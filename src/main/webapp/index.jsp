@@ -1151,4 +1151,4 @@
                 </div>
 
                 <div class="header-actions">
-                    <button class="icon-btn" title="Account" aria-label="Account"><i class="far fa-user
+                    <button class="icon-btn" title="Account" aria-label="Account"><i class="far
