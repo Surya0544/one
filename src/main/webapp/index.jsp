@@ -23,7 +23,7 @@
       overflow-x: hidden;
     }
 
-    /* ---------- MAIN CARD (GLASS MORPHISM) ---------- */
+    /* ---------- MAIN CARD ---------- */
     .sorry-card {
       position: relative;
       z-index: 10;
@@ -48,7 +48,7 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* ---------- HEART / SORRY SYMBOL ---------- */
+    /* ---------- HEART SYMBOL ---------- */
     .apology-icon {
       font-size: 4.2rem;
       line-height: 1;
@@ -144,7 +144,7 @@
     }
 
     /* ============================================= */
-    /* ===== ROHee / BABY ROHEE BACKGROUND ========= */
+    /* ===== ROHee BACKGROUND ====================== */
     /* ============================================= */
     .rohee-bg {
       position: fixed;
@@ -157,7 +157,7 @@
       background: radial-gradient(circle at 30% 20%, #2e1a2b, #0d0b12 80%);
     }
 
-    /* floating orbs / hearts = 'rohee' animation */
+    /* floating orbs */
     .rohee {
       position: absolute;
       border-radius: 50%;
@@ -167,62 +167,12 @@
       mix-blend-mode: screen;
     }
 
-    .r1 {
-      width: 380px;
-      height: 380px;
-      background: #ff7eb3;
-      top: -120px;
-      left: -100px;
-      animation-duration: 16s;
-      opacity: 0.3;
-      filter: blur(60px);
-    }
+    .r1 { width: 380px; height: 380px; background: #ff7eb3; top: -120px; left: -100px; animation-duration: 16s; opacity: 0.3; filter: blur(60px); }
+    .r2 { width: 520px; height: 520px; background: #b86bff; bottom: -180px; right: -120px; animation-duration: 22s; opacity: 0.25; filter: blur(70px); }
+    .r3 { width: 280px; height: 280px; background: #ffb86b; top: 40%; left: 70%; animation-duration: 18s; opacity: 0.3; filter: blur(50px); }
+    .r4 { width: 400px; height: 400px; background: #6b9eff; bottom: 10%; left: 5%; animation-duration: 20s; opacity: 0.25; filter: blur(65px); }
+    .r5 { width: 220px; height: 220px; background: #ff6bcb; top: 15%; right: 15%; animation-duration: 12s; opacity: 0.4; filter: blur(40px); }
 
-    .r2 {
-      width: 520px;
-      height: 520px;
-      background: #b86bff;
-      bottom: -180px;
-      right: -120px;
-      animation-duration: 22s;
-      opacity: 0.25;
-      filter: blur(70px);
-    }
-
-    .r3 {
-      width: 280px;
-      height: 280px;
-      background: #ffb86b;
-      top: 40%;
-      left: 70%;
-      animation-duration: 18s;
-      opacity: 0.3;
-      filter: blur(50px);
-    }
-
-    .r4 {
-      width: 400px;
-      height: 400px;
-      background: #6b9eff;
-      bottom: 10%;
-      left: 5%;
-      animation-duration: 20s;
-      opacity: 0.25;
-      filter: blur(65px);
-    }
-
-    .r5 {
-      width: 220px;
-      height: 220px;
-      background: #ff6bcb;
-      top: 15%;
-      right: 15%;
-      animation-duration: 12s;
-      opacity: 0.4;
-      filter: blur(40px);
-    }
-
-    /* tiny floating hearts/sparkles */
     .sparkle {
       position: absolute;
       color: rgba(255, 200, 230, 0.7);
@@ -259,133 +209,85 @@
       100% { transform: translate(-60px, -40px); opacity: 0.5; }
     }
 
-    /* ---------- BABY ROHEE IMAGES (floating) ---------- */
-    .baby-rohee {
+    /* ============================================= */
+    /* ===== BABY ROHEE IMAGES (SVG data URIs) ===== */
+    /* ============================================= */
+    .baby-rohee-img {
       position: absolute;
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffe4f0, #ffb0d0);
-      box-shadow: 0 8px 28px rgba(255, 120, 180, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.5) inset;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.8rem;
-      z-index: 2;
-      animation: floatBaby 10s infinite alternate ease-in-out;
-      transition: transform 0.3s ease;
-      will-change: transform;
-      border: 2px solid rgba(255, 220, 240, 0.9);
+      width: 110px;
+      height: 110px;
+      z-index: 3;
       pointer-events: none;
-      filter: drop-shadow(0 0 12px #ffb0d8);
-      overflow: hidden;
+      filter: drop-shadow(0 12px 24px rgba(255, 140, 200, 0.55));
+      animation: floatBabyImg 12s infinite alternate ease-in-out;
+      will-change: transform;
     }
 
-    /* baby rohee inner cute face emoji */
-    .baby-rohee::after {
-      content: "🍼";
-      font-size: 2.2rem;
-      line-height: 1;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+    /* Different sizes for variety */
+    .baby-rohee-img.size-sm { width: 70px; height: 70px; }
+    .baby-rohee-img.size-md { width: 95px; height: 95px; }
+    .baby-rohee-img.size-lg { width: 130px; height: 130px; }
+    .baby-rohee-img.size-xl { width: 160px; height: 160px; }
+
+    @keyframes floatBabyImg {
+      0% { transform: translate(0, 0) rotate(-3deg) scale(1); }
+      25% { transform: translate(20px, -25px) rotate(4deg) scale(1.05); }
+      50% { transform: translate(-15px, -45px) rotate(-5deg) scale(1.1); }
+      75% { transform: translate(28px, -18px) rotate(3deg) scale(1.02); }
+      100% { transform: translate(-10px, 20px) rotate(-2deg) scale(0.98); }
     }
 
-    /* variations of baby rohee with different cuteness */
-    .baby-rohee.b1::after { content: "👶"; }
-    .baby-rohee.b2::after { content: "🍼"; }
-    .baby-rohee.b3::after { content: "🧸"; }
-    .baby-rohee.b4::after { content: "👶🏻"; }
-    .baby-rohee.b5::after { content: "🍼💕"; font-size: 1.8rem; }
-    .baby-rohee.b6::after { content: "🐣"; }
-    .baby-rohee.b7::after { content: "🌸"; }
-    .baby-rohee.b8::after { content: "🧸💗"; font-size: 1.8rem; }
+    /* Individual positions & timings */
+    .baby-rohee-img.br1  { top: 5%;  left: 4%;   animation-duration: 13s; animation-delay: 0s; }
+    .baby-rohee-img.br2  { top: 12%; right: 6%;  left: auto; animation-duration: 16s; animation-delay: -3s; }
+    .baby-rohee-img.br3  { bottom: 8%; left: 8%; animation-duration: 14s; animation-delay: -6s; }
+    .baby-rohee-img.br4  { bottom: 15%; right: 10%; left: auto; animation-duration: 18s; animation-delay: -1s; }
+    .baby-rohee-img.br5  { top: 42%; left: 2%;  animation-duration: 15s; animation-delay: -8s; }
+    .baby-rohee-img.br6  { top: 58%; right: 3%; left: auto; animation-duration: 12s; animation-delay: -4s; }
+    .baby-rohee-img.br7  { top: 72%; left: 20%; animation-duration: 17s; animation-delay: -2s; }
+    .baby-rohee-img.br8  { top: 28%; right: 22%; left: auto; animation-duration: 11s; animation-delay: -7s; }
+    .baby-rohee-img.br9  { top: 88%; left: 45%; animation-duration: 14s; animation-delay: -5s; }
+    .baby-rohee-img.br10 { top: 2%; left: 42%;  animation-duration: 19s; animation-delay: -9s; }
+    .baby-rohee-img.br11 { top: 50%; left: 50%; animation-duration: 13.5s; animation-delay: -3.5s; }
+    .baby-rohee-img.br12 { top: 20%; left: 26%; animation-duration: 15.5s; animation-delay: -1.5s; }
 
-    /* baby rohee floating animation */
-    @keyframes floatBaby {
-      0% { transform: translate(0, 0) rotate(-2deg) scale(1); }
-      25% { transform: translate(18px, -22px) rotate(3deg) scale(1.05); }
-      50% { transform: translate(-12px, -40px) rotate(-4deg) scale(1.1); }
-      75% { transform: translate(25px, -15px) rotate(2deg) scale(1.02); }
-      100% { transform: translate(-8px, 18px) rotate(-1deg) scale(0.98); }
+    /* Soft glow behind babies */
+    .baby-glow {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 190, 225, 0.35) 0%, rgba(255, 150, 200, 0.1) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      animation: glowPulse 5s infinite alternate;
     }
 
-    /* different float paths */
-    .baby-rohee.b1 { animation-duration: 11s; animation-delay: 0s; }
-    .baby-rohee.b2 { animation-duration: 14s; animation-delay: -3s; }
-    .baby-rohee.b3 { animation-duration: 12.5s; animation-delay: -6s; }
-    .baby-rohee.b4 { animation-duration: 16s; animation-delay: -1s; }
-    .baby-rohee.b5 { animation-duration: 13s; animation-delay: -8s; }
-    .baby-rohee.b6 { animation-duration: 15s; animation-delay: -4s; }
-    .baby-rohee.b7 { animation-duration: 10s; animation-delay: -7s; }
-    .baby-rohee.b8 { animation-duration: 17s; animation-delay: -2s; }
-
-    /* position each baby rohee around the screen */
-    .baby-rohee.b1 { top: 8%; left: 6%; }
-    .baby-rohee.b2 { top: 18%; right: 8%; left: auto; }
-    .baby-rohee.b3 { bottom: 12%; left: 12%; }
-    .baby-rohee.b4 { bottom: 22%; right: 10%; left: auto; }
-    .baby-rohee.b5 { top: 48%; left: 4%; }
-    .baby-rohee.b6 { top: 62%; right: 6%; left: auto; }
-    .baby-rohee.b7 { top: 75%; left: 22%; }
-    .baby-rohee.b8 { top: 32%; right: 18%; left: auto; }
-
-    /* extra tiny baby rohee floating in mid */
-    .baby-rohee.mini {
-      width: 52px;
-      height: 52px;
-      font-size: 1.6rem;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 8px #ffb0d8);
+    @keyframes glowPulse {
+      0% { opacity: 0.3; transform: scale(0.85); }
+      100% { opacity: 0.85; transform: scale(1.15); }
     }
-    .baby-rohee.mini::after { font-size: 1.4rem; }
-    .baby-rohee.mini.m1 { top: 85%; left: 42%; animation-duration: 9s; }
-    .baby-rohee.mini.m2 { top: 12%; left: 48%; animation-duration: 11s; animation-delay: -2s; }
-    .baby-rohee.mini.m3 { top: 55%; right: 28%; left: auto; animation-duration: 13s; animation-delay: -5s; }
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 480px) {
-      .sorry-card {
-        padding: 2rem 1.2rem;
-        border-radius: 36px;
-      }
-      h1 {
-        font-size: 2.2rem;
-      }
-      .apology-icon {
-        font-size: 3.2rem;
-      }
-      .sorry-message p {
-        font-size: 1.2rem;
-      }
-      .forgive-btn {
-        font-size: 1.2rem;
-        padding: 0.9rem 2rem;
-      }
-      .baby-rohee {
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-      }
-      .baby-rohee.mini {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-      }
-      .baby-rohee.mini::after { font-size: 1rem; }
+      .sorry-card { padding: 2rem 1.2rem; border-radius: 36px; }
+      h1 { font-size: 2.2rem; }
+      .apology-icon { font-size: 3.2rem; }
+      .sorry-message p { font-size: 1.2rem; }
+      .forgive-btn { font-size: 1.2rem; padding: 0.9rem 2rem; }
+      .baby-rohee-img { width: 75px; height: 75px; }
+      .baby-rohee-img.size-sm { width: 50px; height: 50px; }
+      .baby-rohee-img.size-md { width: 65px; height: 65px; }
+      .baby-rohee-img.size-lg { width: 90px; height: 90px; }
+      .baby-rohee-img.size-xl { width: 110px; height: 110px; }
     }
 
     @media (max-width: 360px) {
-      .sorry-message p {
-        font-size: 1rem;
-      }
-      h1 {
-        font-size: 1.9rem;
-      }
-      .baby-rohee {
-        width: 48px;
-        height: 48px;
-        font-size: 1.6rem;
-      }
-      .baby-rohee::after { font-size: 1.4rem; }
+      .sorry-message p { font-size: 1rem; }
+      h1 { font-size: 1.9rem; }
+      .baby-rohee-img { width: 60px; height: 60px; }
+      .baby-rohee-img.size-sm { width: 40px; height: 40px; }
+      .baby-rohee-img.size-md { width: 52px; height: 52px; }
+      .baby-rohee-img.size-lg { width: 72px; height: 72px; }
+      .baby-rohee-img.size-xl { width: 88px; height: 88px; }
     }
 
     .content-wrapper {
@@ -394,23 +296,6 @@
       width: 100%;
       display: flex;
       justify-content: center;
-    }
-
-    /* subtle glow behind baby rohee to make them pop */
-    .baby-rohee-glow {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,200,230,0.25) 0%, transparent 70%);
-      width: 120px;
-      height: 120px;
-      pointer-events: none;
-      z-index: 1;
-      animation: glowPulse 4s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      0% { opacity: 0.3; transform: scale(0.9); }
-      100% { opacity: 0.8; transform: scale(1.2); }
     }
   </style>
 </head>
@@ -434,7 +319,7 @@
     <div class="rohee-dot" style="width: 12px; height: 12px; top: 85%; left: 30%; animation-duration: 12s; animation-delay: -2s;"></div>
     <div class="rohee-dot" style="width: 40px; height: 40px; top: 10%; left: 70%; animation-duration: 22s; animation-delay: -5s; background: rgba(200, 140, 255, 0.2);"></div>
 
-    <!-- floating sparkles -->
+    <!-- sparkles -->
     <div class="sparkle" style="top: 12%; left: 18%; animation-duration: 5s; animation-delay: 0s;">❤️</div>
     <div class="sparkle" style="top: 78%; left: 88%; animation-duration: 7s; animation-delay: 1s; font-size: 2rem;">🌸</div>
     <div class="sparkle" style="top: 45%; left: 8%; animation-duration: 6s; animation-delay: 2s; font-size: 1.4rem;">✨</div>
@@ -443,116 +328,38 @@
     <div class="sparkle" style="top: 60%; left: 75%; animation-duration: 9s; animation-delay: 0.2s; font-size: 1.6rem;">✨</div>
     <div class="sparkle" style="top: 22%; left: 55%; animation-duration: 6.5s; animation-delay: 2.5s;">🌸</div>
 
-    <!-- ===== BABY ROHEE IMAGES ===== -->
-    <!-- Each is a cute floating "baby rohee" character with emoji face -->
-    <div class="baby-rohee b1" style="animation-duration: 12s;"></div>
-    <div class="baby-rohee b2" style="animation-duration: 15s;"></div>
-    <div class="baby-rohee b3" style="animation-duration: 13s;"></div>
-    <div class="baby-rohee b4" style="animation-duration: 17s;"></div>
-    <div class="baby-rohee b5" style="animation-duration: 14s;"></div>
-    <div class="baby-rohee b6" style="animation-duration: 16s;"></div>
-    <div class="baby-rohee b7" style="animation-duration: 11s;"></div>
-    <div class="baby-rohee b8" style="animation-duration: 18s;"></div>
+    <!-- ================================================== -->
+    <!-- ===== BABY ROHEE IMAGES (Embedded SVG data URIs) = -->
+    <!-- ================================================== -->
 
-    <!-- extra mini baby rohees -->
-    <div class="baby-rohee mini m1" style="animation-duration: 10s;"></div>
-    <div class="baby-rohee mini m2" style="animation-duration: 12s;"></div>
-    <div class="baby-rohee mini m3" style="animation-duration: 14s;"></div>
+    <!-- Baby Rohee #1 – Pink baby face with pacifier -->
+    <img class="baby-rohee-img br1 size-lg"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g1' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff0f5'/><stop offset='100%25' stop-color='%23ffb6d9'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g1)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M70 125 Q100 155 130 125' stroke='%23e75480' stroke-width='6' fill='none' stroke-linecap='round'/><circle cx='100' cy='135' r='8' fill='%23ff9ec2' stroke='%23e75480' stroke-width='3'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><path d='M40 55 Q60 35 85 45' stroke='%23ff8ec4' stroke-width='5' fill='none' stroke-linecap='round'/><text x='100' y='190' font-size='20' text-anchor='middle' fill='%23ff5e9c' font-family='sans-serif'>baby rohee</text></svg>" alt="Baby Rohee" />
 
-    <!-- soft glow behind some babies for extra cuteness (optional) -->
-    <div class="baby-rohee-glow" style="top: 8%; left: 6%;"></div>
-    <div class="baby-rohee-glow" style="top: 18%; right: 8%; left: auto;"></div>
-    <div class="baby-rohee-glow" style="bottom: 12%; left: 12%;"></div>
-  </div>
+    <!-- Baby Rohee #2 – Blue baby with bottle -->
+    <img class="baby-rohee-img br2 size-md"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g2' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23e6f0ff'/><stop offset='100%25' stop-color='%23a6c8ff'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g2)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M75 125 Q100 150 125 125' stroke='%234a7cbf' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ffb6d9' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ffb6d9' opacity='0.7'/><rect x='140' y='140' width='22' height='30' rx='5' fill='%23ffffff' stroke='%234a7cbf' stroke-width='3'/><rect x='146' y='135' width='10' height='8' rx='2' fill='%23ffd966'/><text x='100' y='195' font-size='18' text-anchor='middle' fill='%234a7cbf' font-family='sans-serif'>rohee</text></svg>" alt="Baby Rohee" />
 
-  <!-- ===== MAIN APOLOGY CARD ===== -->
-  <div class="content-wrapper">
-    <div class="sorry-card">
-      <div class="apology-icon">🤍</div>
-      <h1>I'm Sorry</h1>
-      <div class="subhead">from the bottom of my heart</div>
+    <!-- Baby Rohee #3 – Purple cute baby with teddy -->
+    <img class="baby-rohee-img br3 size-xl"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g3' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23f5e6ff'/><stop offset='100%25' stop-color='%23c99eff'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g3)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M70 128 Q100 158 130 128' stroke='%238e44ad' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ffb6d9' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ffb6d9' opacity='0.7'/><circle cx='50' cy='55' r='10' fill='%23ffd966' stroke='%23e6a817' stroke-width='2'/><circle cx='150' cy='50' r='10' fill='%23ffd966' stroke='%23e6a817' stroke-width='2'/><text x='100' y='192' font-size='20' text-anchor='middle' fill='%238e44ad' font-family='sans-serif'>rohee</text></svg>" alt="Baby Rohee" />
 
-      <div class="sorry-message">
-        <p>
-          I know I messed up. You mean the world to me, and I hate that I hurt you.<br>
-          Please forgive me — I'll do everything to make it right. 🌸
-        </p>
-        <span class="signature">— with all my love</span>
-      </div>
+    <!-- Baby Rohee #4 – Peach baby with flower -->
+    <img class="baby-rohee-img br4 size-lg"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g4' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff5e6'/><stop offset='100%25' stop-color='%23ffcc99'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g4)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M75 130 Q100 155 125 130' stroke='%23e67e22' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><circle cx='45' cy='45' r='6' fill='%23ff6bcb'/><circle cx='55' cy='38' r='6' fill='%23ff6bcb'/><circle cx='58' cy='50' r='6' fill='%23ff6bcb'/><circle cx='48' cy='55' r='6' fill='%23ff6bcb'/><circle cx='52' cy='46' r='4' fill='%23ffd966'/><text x='100' y='195' font-size='18' text-anchor='middle' fill='%23e67e22' font-family='sans-serif'>baby rohee</text></svg>" alt="Baby Rohee" />
 
-      <button class="forgive-btn" id="forgiveBtn">
-        <span>💖</span> I forgive you <span>💖</span>
-      </button>
-    </div>
-  </div>
+    <!-- Baby Rohee #5 – Mint baby with sparkle -->
+    <img class="baby-rohee-img br5 size-md"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g5' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23e6fff5'/><stop offset='100%25' stop-color='%2399e6cc'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g5)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M72 126 Q100 154 128 126' stroke='%2327ae60' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><path d='M155 60 L160 70 L170 72 L162 80 L164 90 L155 85 L146 90 L148 80 L140 72 L150 70 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='1'/><text x='100' y='192' font-size='18' text-anchor='middle' fill='%2327ae60' font-family='sans-serif'>rohee</text></svg>" alt="Baby Rohee" />
 
-  <!-- interactive script -->
-  <script>
-    (function() {
-      const btn = document.getElementById('forgiveBtn');
-      if (btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          // Create floating baby rohee + hearts burst
-          const emojis = ['👶', '🍼', '🧸', '🌸', '💗', '❤️', '✨', '🐣'];
-          const colors = ['#ff90b6', '#ffb86b', '#b86bff', '#6b9eff', '#ff6bcb'];
-          
-          for (let i = 0; i < 22; i++) {
-            const el = document.createElement('div');
-            const isBaby = Math.random() > 0.5;
-            
-            if (isBaby) {
-              // baby rohee burst
-              el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-              el.style.fontSize = (Math.random() * 28 + 22) + 'px';
-              el.style.filter = 'drop-shadow(0 0 12px #ffb0d8)';
-            } else {
-              el.innerHTML = ['❤️', '✨', '💗', '🌸'][Math.floor(Math.random() * 4)];
-              el.style.fontSize = (Math.random() * 20 + 16) + 'px';
-            }
-            
-            el.style.position = 'fixed';
-            el.style.left = (e.clientX || window.innerWidth / 2) + (Math.random() * 90 - 45) + 'px';
-            el.style.top = (e.clientY || window.innerHeight / 2) + (Math.random() * 70 - 35) + 'px';
-            el.style.pointerEvents = 'none';
-            el.style.zIndex = '9999';
-            el.style.opacity = '1';
-            el.style.transition = 'transform 1.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.4s ease-out';
-            el.style.transform = 'translate(0, 0) scale(1)';
-            el.style.willChange = 'transform, opacity';
-            
-            document.body.appendChild(el);
+    <!-- Baby Rohee #6 – Yellow baby with bib -->
+    <img class="baby-rohee-img br6 size-sm"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g6' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fffce6'/><stop offset='100%25' stop-color='%23ffe680'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g6)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M75 130 Q100 150 125 130' stroke='%23d4a017' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><path d='M70 150 Q100 170 130 150 L125 165 Q100 180 75 165 Z' fill='%23ffffff' stroke='%23d4a017' stroke-width='2'/><text x='100' y='192' font-size='18' text-anchor='middle' fill='%23d4a017' font-family='sans-serif'>rohee</text></svg>" alt="Baby Rohee" />
 
-            // Animate outward with float
-            requestAnimationFrame(() => {
-              const angle = Math.random() * Math.PI * 2;
-              const radius = 120 + Math.random() * 220;
-              const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius - 70; // upward bias
-              el.style.transform = `translate(${x}px, ${y}px) scale(0.3) rotate(${Math.random() * 60 - 30}deg)`;
-              el.style.opacity = '0';
-            });
+    <!-- Baby Rohee #7 – Pink baby girl with bow -->
+    <img class="baby-rohee-img br7 size-lg"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g7' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23ffe6f0'/><stop offset='100%25' stop-color='%23ff99c8'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g7)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M75 128 Q100 156 125 128' stroke='%23c2185b' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff6bcb' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff6bcb' opacity='0.7'/><path d='M55 40 Q45 25 60 25 Q75 25 65 40 Z' fill='%23ff4081'/><path d='M65 40 Q75 25 90 25 Q105 25 95 40 Z' fill='%23ff4081'/><circle cx='75' cy='35' r='6' fill='%23ff80ab'/><text x='100' y='195' font-size='18' text-anchor='middle' fill='%23c2185b' font-family='sans-serif'>baby rohee</text></svg>" alt="Baby Rohee" />
 
-            // Cleanup
-            setTimeout(() => {
-              if (el.parentNode) el.remove();
-            }, 1500);
-          }
-
-          // Button feedback
-          btn.style.transform = 'scale(0.96)';
-          setTimeout(() => { btn.style.transform = ''; }, 150);
-          
-          // Change button text temporarily
-          const originalText = btn.innerHTML;
-          btn.innerHTML = '🍼 Thank you 🍼';
-          setTimeout(() => {
-            btn.innerHTML = originalText;
-          }, 2000);
-        });
-      }
-    })();
-  </script>
-</body>
-</html>
+    <!-- Baby Rohee #8 – Lavender baby with moon -->
+    <img class="baby-rohee-img br8 size-md"
+      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='g8' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23f0e6ff'/><stop offset='100%25' stop-color='%23b399ff'/></radialGradient></defs><circle cx='100' cy='100' r='95' fill='url(%23g8)'/><circle cx='65' cy='75' r='12' fill='%23333'/><circle cx='135' cy='75' r='12' fill='%23333'/><circle cx='65' cy='75' r='4' fill='white'/><circle cx='135' cy='75' r='4' fill='white'/><path d='M75 130 Q100 152 125 130' stroke='%236a1b9a' stroke-width='6' fill='none' stroke-linecap='round'/><ellipse cx='55' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><ellipse cx='145' cy='105' rx='10' ry='7' fill='%23ff9ec2' opacity='0.7'/><path d='M155 50 A15 15 0 1 1 155 80 A12 12 0 1 0 155 50 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='
