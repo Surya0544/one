@@ -1,373 +1,1033 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Sorry • with Jinmiran Baby 🍼</title>
-  <style>
-    /* ---------- RESET & BASE ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#111827" />
+<title>Nova Store — Premium Shopping</title>
+<style>
+  /* ============================================================
+     RESET & DESIGN TOKENS
+     ============================================================ */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    /* Colors */
+    --bg: #f7f8fc;
+    --surface: #ffffff;
+    --surface-2: #f1f3f9;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e5e9f2;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef0ff;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --star: #fbbf24;
+
+    /* Radius */
+    --r-sm: 10px;
+    --r-md: 14px;
+    --r-lg: 20px;
+    --r-xl: 28px;
+    --r-full: 999px;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+    --shadow-xl: 0 24px 60px rgba(15, 23, 42, 0.18);
+
+    /* Motion */
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --t-fast: 0.15s var(--ease);
+    --t-base: 0.25s var(--ease);
+    --t-slow: 0.4s var(--ease);
+
+    /* Layout */
+    --header-h: 72px;
+    --max-w: 1280px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  img { display: block; max-width: 100%; }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+  }
+
+  input, select { font-family: inherit; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ul { list-style: none; }
+
+  /* ============================================================
+     UTILITY
+     ============================================================ */
+  .container {
+    width: 100%;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ============================================================
+     HEADER
+     ============================================================ */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-h);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .logo__mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+  }
+
+  /* Search */
+  .search {
+    flex: 1;
+    max-width: 520px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search__icon {
+    position: absolute;
+    left: 16px;
+    color: var(--text-muted);
+    pointer-events: none;
+    display: flex;
+  }
+
+  .search__input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px 0 46px;
+    border-radius: var(--r-full);
+    border: 1.5px solid var(--border);
+    background: var(--surface-2);
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+    transition: all var(--t-fast);
+  }
+
+  .search__input::placeholder { color: var(--text-muted); }
+
+  .search__input:focus {
+    border-color: var(--primary);
+    background: var(--surface);
+    box-shadow: 0 0 0 4px var(--primary-light);
+  }
+
+  /* Header actions */
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: var(--r-full);
+    display: grid;
+    place-items: center;
+    color: var(--text);
+    transition: background var(--t-fast), transform var(--t-fast);
+  }
+
+  .icon-btn:hover { background: var(--surface-2); }
+  .icon-btn:active { transform: scale(0.94); }
+
+  .icon-btn__badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    border-radius: var(--r-full);
+    background: var(--danger);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--surface);
+    transform: scale(0);
+    transition: transform var(--t-base);
+  }
+
+  .icon-btn__badge.is-visible { transform: scale(1); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    margin: 32px 0 44px;
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(120deg, #1e1b4b 0%, #4f46e5 55%, #8b5cf6 100%);
+    color: #fff;
+    padding: 56px 48px;
+    isolation: isolate;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(255,255,255,0.18), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(255,255,255,0.12), transparent 40%);
+    z-index: -1;
+  }
+
+  .hero__content { max-width: 560px; position: relative; z-index: 2; }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .hero__title span {
+    background: linear-gradient(90deg, #fbbf24, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero__text {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 28px;
+    max-width: 460px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    border-radius: var(--r-full);
+    background: #fff;
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 0.98rem;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    transition: transform var(--t-base), box-shadow var(--t-base);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  /* ============================================================
+     TOOLBAR (filters + sort)
+     ============================================================ */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .section-head h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .section-head span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .toolbar__controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Category chips */
+  .chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .chips::-webkit-scrollbar { display: none; }
+
+  .chip {
+    padding: 9px 18px;
+    border-radius: var(--r-full);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: all var(--t-fast);
+  }
+
+  .chip:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .chip.is-active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.32);
+  }
+
+  /* Sort select */
+  .select {
+    height: 44px;
+    padding: 0 38px 0 16px;
+    border-radius: var(--r-full);
+    border: 1.5px solid var(--border);
+    background: var(--surface) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 16px center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  }
+
+  .select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-light);
+  }
+
+  /* ============================================================
+     PRODUCT GRID
+     ============================================================ */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 22px;
+    padding-bottom: 72px;
+  }
+
+  /* Product card */
+  .card {
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+    position: relative;
+    animation: cardIn 0.4s var(--ease) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: #d9def0;
+  }
+
+  .card__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(145deg, #f8f9ff, #eef1fa);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .card__media img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    transition: transform var(--t-slow);
+    filter: drop-shadow(0 10px 22px rgba(15, 23, 42, 0.14));
+  }
+
+  .card:hover .card__media img { transform: scale(1.08) rotate(-2deg); }
+
+  /* Wishlist */
+  .wish {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--r-full);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    display: grid;
+    place-items: center;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--t-fast);
+    z-index: 2;
+  }
+
+  .wish:hover { transform: scale(1.1); color: var(--danger); }
+
+  .wish.is-active { color: var(--danger); }
+
+  .wish.is-active svg { fill: currentColor; }
+
+  /* Sale tag */
+  .tag-sale {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 12px;
+    border-radius: var(--r-full);
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    box-shadow: 0 6px 14px rgba(239, 68, 68, 0.35);
+    z-index: 2;
+  }
+
+  /* Card body */
+  .card__body {
+    padding: 16px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+  }
+
+  .card__cat {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.7em;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .stars { display: flex; gap: 1px; color: var(--star); }
+
+  .card__footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 6px;
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  .price__now {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .price__was {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
+  /* Add button */
+  .btn-add {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: var(--r-md);
+    background: var(--primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.32);
+    transition: all var(--t-fast);
+  }
+
+  .btn-add:hover {
+    background: var(--primary-dark);
+    transform: scale(1.06);
+  }
+
+  .btn-add:active { transform: scale(0.95); }
+
+  .btn-add.is-added { background: var(--success); }
+
+  /* Empty state */
+  .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-muted);
+  }
+
+  .empty svg { margin: 0 auto 16px; color: #cbd5e1; }
+
+  .empty h3 { color: var(--text); font-size: 1.2rem; margin-bottom: 6px; }
+
+  /* ============================================================
+     CART DRAWER
+     ============================================================ */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--t-base), visibility var(--t-base);
+  }
+
+  .overlay.is-open { opacity: 1; visibility: visible; }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(440px, 100%);
+    background: var(--surface);
+    z-index: 210;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform var(--t-slow);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .drawer.is-open { transform: translateX(0); }
+
+  .drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .drawer__head h2 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .drawer__head .count-pill {
+    padding: 2px 10px;
+    border-radius: var(--r-full);
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-full);
+    display: grid;
+    place-items: center;
+    color: var(--text-muted);
+    transition: background var(--t-fast), color var(--t-fast);
+  }
+
+  .close-btn:hover { background: var(--surface-2); color: var(--text); }
+
+  .drawer__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 24px;
+  }
+
+  /* Cart item */
+  .cart-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    animation: cardIn 0.3s var(--ease) both;
+  }
+
+  .cart-item__img {
+    width: 74px;
+    height: 74px;
+    border-radius: var(--r-md);
+    background: linear-gradient(145deg, #f8f9ff, #eef1fa);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .cart-item__img img { width: 82%; height: 82%; object-fit: contain; }
+
+  .cart-item__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cart-item__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cart-item__price {
+    font-weight: 800;
+    font-size: 0.98rem;
+    color: var(--primary);
+  }
+
+  .qty {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--surface-2);
+    border-radius: var(--r-full);
+    padding: 3px;
+    width: fit-content;
+  }
+
+  .qty button {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--r-full);
+    display: grid;
+    place-items: center;
+    color: var(--text);
+    font-weight: 700;
+    transition: background var(--t-fast);
+  }
+
+  .qty button:hover { background: var(--surface); }
+
+  .qty span {
+    min-width: 26px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .cart-item__remove {
+    align-self: flex-start;
+    color: var(--text-muted);
+    padding: 4px;
+    border-radius: 6px;
+    transition: color var(--t-fast), background var(--t-fast);
+  }
+
+  .cart-item__remove:hover { color: var(--danger); background: #fef2f2; }
+
+  /* Cart empty */
+  .cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+
+  .cart-empty svg { margin: 0 auto 16px; color: #cbd5e1; }
+
+  .cart-empty h3 { color: var(--text); margin-bottom: 6px; }
+
+  /* Drawer footer */
+  .drawer__foot {
+    padding: 20px 24px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .sum-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .sum-row.total {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text);
+    padding-top: 12px;
+    margin-top: 12px;
+    margin-bottom: 18px;
+    border-top: 1.5px dashed var(--border);
+  }
+
+  .sum-row.total span:last-child { color: var(--primary); }
+
+  .btn-checkout {
+    width: 100%;
+    height: 54px;
+    border-radius: var(--r-md);
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 12px 28px rgba(79, 70, 229, 0.4);
+    transition: all var(--t-base);
+  }
+
+  .btn-checkout:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(79, 70, 229, 0.5);
+  }
+
+  .btn-checkout:active:not(:disabled) { transform: translateY(0); }
+
+  .btn-checkout:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  /* ============================================================
+     TOAST
+     ============================================================ */
+  .toast-wrap {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    pointer-events: none;
+    width: min(92vw, 420px);
+  }
+
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: var(--r-md);
+    background: #0f172a;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-xl);
+    animation: toastIn 0.35s var(--ease) both;
+    pointer-events: auto;
+    width: 100%;
+  }
+
+  .toast.is-out { animation: toastOut 0.3s var(--ease) both; }
+
+  .toast__dot {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--r-full);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    background: var(--success);
+  }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes toastOut {
+    to { opacity: 0; transform: translateY(14px) scale(0.96); }
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 34px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 760px) {
+    .hero { padding: 40px 26px; margin: 20px 0 32px; }
+    .header__inner { gap: 12px; }
+    .logo span { display: none; }
+    .search { max-width: none; }
+    .section-head h2 { font-size: 1.3rem; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 0 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card__body { padding: 12px; }
+    .card__title { font-size: 0.88rem; }
+    .price__now { font-size: 1.05rem; }
+    .btn-add { width: 40px; height: 40px; }
+    .hero { padding: 32px 20px; border-radius: var(--r-lg); }
+    .toolbar { gap: 12px; }
+    .select { width: 100%; }
+  }
+
+  @media (max-width: 360px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0b0e14;
-      padding: 16px;
-      overflow-x: hidden;
-    }
-
-    /* ---------- MAIN CARD ---------- */
-    .sorry-card {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 600px;
-      background: rgba(20, 25, 35, 0.55);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border-radius: 48px;
-      padding: 2.8rem 2rem 2.8rem 2rem;
-      box-shadow: 0 30px 45px -20px rgba(0, 0, 0, 0.8), 
-                  0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-                  0 0 35px rgba(220, 120, 180, 0.3);
-      border: 1px solid rgba(255, 200, 230, 0.2);
-      text-align: center;
-      transition: transform 0.3s ease;
-      animation: cardAppear 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-
-    @keyframes cardAppear {
-      0% { opacity: 0; transform: scale(0.92) translateY(20px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    /* ---------- HEART SYMBOL ---------- */
-    .apology-icon {
-      font-size: 4.2rem;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-      filter: drop-shadow(0 8px 18px rgba(255, 120, 180, 0.5));
-      animation: gentlePulse 2.8s infinite ease-in-out;
-    }
-
-    @keyframes gentlePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    /* ---------- TYPOGRAPHY ---------- */
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffe6f0, #ffb6d9, #ff8ec4);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(255, 140, 200, 0.4);
-    }
-
-    .subhead {
-      font-size: 1.2rem;
-      color: #e0c0d0;
-      font-weight: 300;
-      letter-spacing: 0.3px;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-
-    .sorry-message {
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 32px;
-      padding: 1.8rem 1.4rem;
-      margin: 1.5rem 0 2rem 0;
-      border: 1px solid rgba(255, 180, 210, 0.25);
-      box-shadow: 0 0 25px rgba(200, 100, 160, 0.2) inset;
-    }
-
-    .sorry-message p {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #ffd9ec;
-      font-weight: 400;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-      word-break: break-word;
-    }
-
-    .sorry-message .signature {
-      display: block;
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #c0a0b0;
-      font-style: italic;
-      letter-spacing: 0.5px;
-    }
-
-    /* ---------- CUTE BUTTON ---------- */
-    .forgive-btn {
-      background: linear-gradient(145deg, #ff90b6, #ff5e9c);
-      border: none;
-      padding: 1rem 2.8rem;
-      border-radius: 100px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #1e1016;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      box-shadow: 0 16px 30px -8px rgba(255, 80, 150, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(4px);
-      margin-bottom: 0.5rem;
-    }
-
-    .forgive-btn:hover {
-      transform: scale(1.02) translateY(-3px);
-      box-shadow: 0 22px 35px -6px #ff4090, 0 0 0 1px white inset;
-      background: linear-gradient(145deg, #ff9ec2, #ff6ba8);
-    }
-
-    .forgive-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* ============================================= */
-    /* ===== ROHee BACKGROUND ====================== */
-    /* ============================================= */
-    .rohee-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      background: radial-gradient(circle at 30% 20%, #2e1a2b, #0d0b12 80%);
-    }
-
-    /* floating orbs */
-    .rohee {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(22px);
-      opacity: 0.6;
-      animation: floatRohee 14s infinite alternate ease-in-out;
-      mix-blend-mode: screen;
-    }
-
-    .r1 { width: 380px; height: 380px; background: #ff7eb3; top: -120px; left: -100px; animation-duration: 16s; opacity: 0.3; filter: blur(60px); }
-    .r2 { width: 520px; height: 520px; background: #b86bff; bottom: -180px; right: -120px; animation-duration: 22s; opacity: 0.25; filter: blur(70px); }
-    .r3 { width: 280px; height: 280px; background: #ffb86b; top: 40%; left: 70%; animation-duration: 18s; opacity: 0.3; filter: blur(50px); }
-    .r4 { width: 400px; height: 400px; background: #6b9eff; bottom: 10%; left: 5%; animation-duration: 20s; opacity: 0.25; filter: blur(65px); }
-    .r5 { width: 220px; height: 220px; background: #ff6bcb; top: 15%; right: 15%; animation-duration: 12s; opacity: 0.4; filter: blur(40px); }
-
-    .sparkle {
-      position: absolute;
-      color: rgba(255, 200, 230, 0.7);
-      font-size: 1.8rem;
-      user-select: none;
-      pointer-events: none;
-      animation: twinkleRohee 6s infinite alternate;
-      filter: drop-shadow(0 0 6px #ff90b0);
-      z-index: 1;
-    }
-
-    @keyframes floatRohee {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -30px) scale(1.1); }
-      100% { transform: translate(-30px, 40px) scale(0.95); }
-    }
-
-    @keyframes twinkleRohee {
-      0% { opacity: 0.2; transform: translateY(0) scale(0.8); }
-      100% { opacity: 0.9; transform: translateY(-25px) scale(1.3); }
-    }
-
-    .rohee-dot {
-      position: absolute;
-      background: rgba(255, 180, 210, 0.25);
-      border-radius: 50%;
-      filter: blur(5px);
-      animation: floatDot 18s infinite alternate;
-      z-index: 1;
-    }
-
-    @keyframes floatDot {
-      0% { transform: translate(0, 0); opacity: 0.2; }
-      100% { transform: translate(-60px, -40px); opacity: 0.5; }
-    }
-
-    /* ============================================= */
-    /* ===== JINMIRAN BABY IMAGES (SVG data URIs) == */
-    /* ============================================= */
-    .jinmiran-baby {
-      position: absolute;
-      z-index: 3;
-      pointer-events: none;
-      filter: drop-shadow(0 14px 28px rgba(255, 150, 200, 0.6));
-      animation: floatJinmiran 13s infinite alternate ease-in-out;
-      will-change: transform;
-    }
-
-    /* Size variants */
-    .jinmiran-baby.size-xs { width: 55px;  height: 55px; }
-    .jinmiran-baby.size-sm { width: 75px;  height: 75px; }
-    .jinmiran-baby.size-md { width: 100px; height: 100px; }
-    .jinmiran-baby.size-lg { width: 130px; height: 130px; }
-    .jinmiran-baby.size-xl { width: 165px; height: 165px; }
-
-    @keyframes floatJinmiran {
-      0%   { transform: translate(0, 0) rotate(-4deg) scale(1); }
-      20%  { transform: translate(22px, -30px) rotate(5deg) scale(1.06); }
-      45%  { transform: translate(-18px, -50px) rotate(-6deg) scale(1.12); }
-      70%  { transform: translate(30px, -22px) rotate(4deg) scale(1.03); }
-      100% { transform: translate(-12px, 22px) rotate(-3deg) scale(0.97); }
-    }
-
-    /* Individual placement + timing */
-    .jinmiran-baby.jb1  { top: 4%;   left: 3%;    animation-duration: 13s; animation-delay: 0s; }
-    .jinmiran-baby.jb2  { top: 10%;  right: 5%;   left: auto; animation-duration: 16s; animation-delay: -3s; }
-    .jinmiran-baby.jb3  { bottom: 7%; left: 6%;   animation-duration: 14s; animation-delay: -6s; }
-    .jinmiran-baby.jb4  { bottom: 14%; right: 8%; left: auto; animation-duration: 18s; animation-delay: -1s; }
-    .jinmiran-baby.jb5  { top: 40%;  left: 1%;    animation-duration: 15s; animation-delay: -8s; }
-    .jinmiran-baby.jb6  { top: 55%;  right: 2%;   left: auto; animation-duration: 12s; animation-delay: -4s; }
-    .jinmiran-baby.jb7  { top: 70%;  left: 18%;   animation-duration: 17s; animation-delay: -2s; }
-    .jinmiran-baby.jb8  { top: 26%;  right: 20%;  left: auto; animation-duration: 11s; animation-delay: -7s; }
-    .jinmiran-baby.jb9  { top: 86%;  left: 42%;   animation-duration: 14.5s; animation-delay: -5s; }
-    .jinmiran-baby.jb10 { top: 1%;   left: 40%;   animation-duration: 19s; animation-delay: -9s; }
-    .jinmiran-baby.jb11 { top: 48%;  left: 48%;   animation-duration: 13.5s; animation-delay: -3.5s; }
-    .jinmiran-baby.jb12 { top: 18%;  left: 24%;   animation-duration: 15.5s; animation-delay: -1.5s; }
-    .jinmiran-baby.jb13 { bottom: 26%; left: 30%; animation-duration: 16.5s; animation-delay: -10s; }
-    .jinmiran-baby.jb14 { top: 63%;  left: 62%;   animation-duration: 12.5s; animation-delay: -2.5s; }
-    .jinmiran-baby.jb15 { bottom: 4%; right: 30%; left: auto; animation-duration: 18.5s; animation-delay: -6.5s; }
-
-    /* Soft glow behind babies */
-    .baby-glow {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 200, 230, 0.4) 0%, rgba(255, 150, 200, 0.12) 45%, transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-      animation: glowPulse 5s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      0%   { opacity: 0.3; transform: scale(0.85); }
-      100% { opacity: 0.9; transform: scale(1.2); }
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 480px) {
-      .sorry-card { padding: 2rem 1.2rem; border-radius: 36px; }
-      h1 { font-size: 2.2rem; }
-      .apology-icon { font-size: 3.2rem; }
-      .sorry-message p { font-size: 1.2rem; }
-      .forgive-btn { font-size: 1.2rem; padding: 0.9rem 2rem; }
-      .jinmiran-baby.size-xs { width: 38px;  height: 38px; }
-      .jinmiran-baby.size-sm { width: 52px;  height: 52px; }
-      .jinmiran-baby.size-md { width: 70px;  height: 70px; }
-      .jinmiran-baby.size-lg { width: 92px;  height: 92px; }
-      .jinmiran-baby.size-xl { width: 115px; height: 115px; }
-    }
-
-    @media (max-width: 360px) {
-      .sorry-message p { font-size: 1rem; }
-      h1 { font-size: 1.9rem; }
-      .jinmiran-baby.size-xs { width: 32px;  height: 32px; }
-      .jinmiran-baby.size-sm { width: 44px;  height: 44px; }
-      .jinmiran-baby.size-md { width: 58px;  height: 58px; }
-      .jinmiran-baby.size-lg { width: 76px;  height: 76px; }
-      .jinmiran-baby.size-xl { width: 95px;  height: 95px; }
-    }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 20;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <!-- ============================================= -->
-  <!-- ===== ROHee / JINMIRAN BABY ANIMATION BG ==== -->
-  <!-- ============================================= -->
-  <div class="rohee-bg" aria-hidden="true">
-    <!-- large soft orbs -->
-    <div class="rohee r1"></div>
-    <div class="rohee r2"></div>
-    <div class="rohee r3"></div>
-    <div class="rohee r4"></div>
-    <div class="rohee r5"></div>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+  <div class="container header__inner">
+    <a href="#" class="logo" aria-label="Nova Store home">
+      <span class="logo__mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+          <path d="M3 6h18"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </span>
+      <span>Nova&nbsp;Store</span>
+    </a>
 
-    <!-- floating dots -->
-    <div class="rohee-dot" style="width: 18px; height: 18px; top: 20%; left: 15%; animation-duration: 14s;"></div>
-    <div class="rohee-dot" style="width: 32px; height: 32px; top: 70%; left: 80%; animation-duration: 20s; animation-delay: -3s;"></div>
-    <div class="rohee-dot" style="width: 24px; height: 24px; top: 50%; left: 45%; animation-duration: 16s; animation-delay: -7s;"></div>
-    <div class="rohee-dot" style="width: 12px; height: 12px; top: 85%; left: 30%; animation-duration: 12s; animation-delay: -2s;"></div>
-    <div class="rohee-dot" style="width: 40px; height: 40px; top: 10%; left: 70%; animation-duration: 22s; animation-delay: -5s; background: rgba(200, 140, 255, 0.2);"></div>
+    <div class="search">
+      <span class="search__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+      </span>
+      <input
+        id="searchInput"
+        class="search__input"
+        type="search"
+        placeholder="Search products, brands…"
+        aria-label="Search products"
+        autocomplete="off"
+      />
+    </div>
 
-    <!-- sparkles -->
-    <div class="sparkle" style="top: 12%; left: 18%; animation-duration: 5s; animation-delay: 0s;">❤️</div>
-    <div class="sparkle" style="top: 78%; left: 88%; animation-duration: 7s; animation-delay: 1s; font-size: 2rem;">🌸</div>
-    <div class="sparkle" style="top: 45%; left: 8%; animation-duration: 6s; animation-delay: 2s; font-size: 1.4rem;">✨</div>
-    <div class="sparkle" style="top: 30%; left: 92%; animation-duration: 8s; animation-delay: 0.5s; font-size: 2.2rem;">💗</div>
-    <div class="sparkle" style="top: 88%; left: 12%; animation-duration: 5.5s; animation-delay: 1.8s;">🌷</div>
-    <div class="sparkle" style="top: 60%; left: 75%; animation-duration: 9s; animation-delay: 0.2s; font-size: 1.6rem;">✨</div>
-    <div class="sparkle" style="top: 22%; left: 55%; animation-duration: 6.5s; animation-delay: 2.5s;">🌸</div>
-    <div class="sparkle" style="top: 92%; left: 55%; animation-duration: 7.5s; animation-delay: 1.2s;">🍼</div>
+    <div class="header__actions">
+      <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+        </svg>
+        <span class="icon-btn__badge" id="wishBadge">0</span>
+      </button>
 
-    <!-- ===================================================== -->
-    <!-- ===== JINMIRAN BABY IMAGES (SVG data URIs) =========== -->
-    <!-- These are cute Korean-style baby characters with soft   -->
-    <!-- pastel colors, blush cheeks, and adorable expressions.  -->
-    <!-- ===================================================== -->
+      <button class="icon-btn" id="cartBtn" aria-label="Open shopping cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="21" r="1"/>
+          <circle cx="19" cy="21" r="1"/>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+        </svg>
+        <span class="icon-btn__badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
 
-    <!-- Jinmiran Baby 1 – Pink hanbok baby with flower -->
-    <img class="jinmiran-baby jb1 size-xl"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg1' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff5f9'/><stop offset='100%25' stop-color='%23ffb6d9'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg1)' stroke='%23ff8ec4' stroke-width='3'/><path d='M40 60 Q60 20 100 40 Q140 20 160 60' stroke='%23ff5e9c' stroke-width='4' fill='none'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M78 128 Q100 150 122 128' stroke='%23e75480' stroke-width='5' fill='none' stroke-linecap='round'/><circle cx='100' cy='132' r='6' fill='%23ff6bcb'/><path d='M150 45 Q160 35 170 45 Q180 55 170 65 Q160 55 150 45 Z' fill='%23ff6bcb'/><path d='M165 40 Q170 32 178 40 Q185 48 178 55 Q170 48 165 40 Z' fill='%23ff9ec2'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23c2185b' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
+<main class="container">
 
-    <!-- Jinmiran Baby 2 – Blue baby with bottle -->
-    <img class="jinmiran-baby jb2 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg2' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23eef6ff'/><stop offset='100%25' stop-color='%23a6c8ff'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg2)' stroke='%234a7cbf' stroke-width='3'/><path d='M45 55 Q65 25 100 42 Q135 25 155 55' stroke='%234a7cbf' stroke-width='4' fill='none'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M80 130 Q100 150 120 130' stroke='%234a7cbf' stroke-width='5' fill='none' stroke-linecap='round'/><rect x='140' y='140' width='20' height='28' rx='5' fill='white' stroke='%234a7cbf' stroke-width='2.5'/><rect x='145' y='135' width='10' height='7' rx='2' fill='%23ffd966'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%234a7cbf' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="hero__badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        New Season Collection
+      </span>
+      <h1 class="hero__title">Shop smarter,<br><span>live better.</span></h1>
+      <p class="hero__text">Curated premium products with fast, free delivery. Quality you can trust, prices you'll love.</p>
+      <a href="#products" class="btn-primary">
+        Shop Now
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
 
-    <!-- Jinmiran Baby 3 – Mint baby with sparkles -->
-    <img class="jinmiran-baby jb3 size-md"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg3' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23eafff7'/><stop offset='100%25' stop-color='%2399e6cc'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg3)' stroke='%2327ae60' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M78 130 Q100 152 122 130' stroke='%2327ae60' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M160 55 L165 68 L178 70 L168 80 L171 93 L160 86 L149 93 L152 80 L142 70 L155 68 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='1'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%2327ae60' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+  <!-- TOOLBAR -->
+  <div class="toolbar" id="products">
+    <div class="section-head">
+      <h2>Featured Products</h2>
+      <span id="resultCount">0 items</span>
+    </div>
 
-    <!-- Jinmiran Baby 4 – Peach baby with bow -->
-    <img class="jinmiran-baby jb4 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg4' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fffaf0'/><stop offset='100%25' stop-color='%23ffcc99'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg4)' stroke='%23e67e22' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 150 120 130' stroke='%23e67e22' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M70 40 Q60 25 75 25 Q90 25 80 40 Z' fill='%23ff4081'/><path d='M80 40 Q90 25 105 25 Q120 25 110 40 Z' fill='%23ff4081'/><circle cx='90' cy='35' r='6' fill='%23ff80ab'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23e67e22' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
-
-    <!-- Jinmiran Baby 5 – Lavender baby with moon -->
-    <img class="jinmiran-baby jb5 size-md"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg5' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23f8f0ff'/><stop offset='100%25' stop-color='%23c9a6ff'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg5)' stroke='%236a1b9a' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 148 120 130' stroke='%236a1b9a' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M155 50 A14 14 0 1 1 155 78 A10 10 0 1 0 155 50 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='1.5'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%236a1b9a' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
-
-    <!-- Jinmiran Baby 6 – Yellow baby with bib -->
-    <img class="jinmiran-baby jb6 size-sm"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg6' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fffdf0'/><stop offset='100%25' stop-color='%23ffe680'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg6)' stroke='%23d4a017' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 148 120 130' stroke='%23d4a017' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M75 145 Q100 165 125 145 L120 160 Q100 175 80 160 Z' fill='white' stroke='%23d4a017' stroke-width='2'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23d4a017' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
-
-    <!-- Jinmiran Baby 7 – Pink baby with hair tuft -->
-    <img class="jinmiran-baby jb7 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg7' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff0f7'/><stop offset='100%25' stop-color
+    <div class="toolbar__controls">
+      <div class="chips" id="chips" role="tablist" aria-label="Filter by category"></div>
+      <select class="select" id="sortSelect" aria-label="Sort products">
+       
