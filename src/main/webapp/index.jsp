@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Sorry • with love</title>
+  <title>Sorry • with baby rohee 🍼</title>
   <style>
     /* ---------- RESET & BASE ---------- */
     * {
@@ -18,8 +18,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0b0e14;  /* deep fallback */
+      background: #0b0e14;
       padding: 16px;
+      overflow-x: hidden;
     }
 
     /* ---------- MAIN CARD (GLASS MORPHISM) ---------- */
@@ -110,7 +111,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* ---------- CUTE BUTTON (just for interaction) ---------- */
+    /* ---------- CUTE BUTTON ---------- */
     .forgive-btn {
       background: linear-gradient(145deg, #ff90b6, #ff5e9c);
       border: none;
@@ -118,7 +119,6 @@
       border-radius: 100px;
       font-size: 1.4rem;
       font-weight: 600;
-      color: #1a0f14;
       color: #1e1016;
       letter-spacing: 0.5px;
       cursor: pointer;
@@ -143,8 +143,9 @@
       transform: scale(0.98);
     }
 
-    /* ---------- ROHee / ROHAN ANIMATION BACKGROUND ---------- */
-    /* 'rohee' interpreted as a sweet floating animation inspired by 'Rohi' / soft shapes */
+    /* ============================================= */
+    /* ===== ROHee / BABY ROHEE BACKGROUND ========= */
+    /* ============================================= */
     .rohee-bg {
       position: fixed;
       top: 0;
@@ -166,7 +167,6 @@
       mix-blend-mode: screen;
     }
 
-    /* individual rohee elements – varied colors & sizes */
     .r1 {
       width: 380px;
       height: 380px;
@@ -222,7 +222,7 @@
       filter: blur(40px);
     }
 
-    /* tiny floating hearts/sparkles (rohee magic) */
+    /* tiny floating hearts/sparkles */
     .sparkle {
       position: absolute;
       color: rgba(255, 200, 230, 0.7);
@@ -245,7 +245,6 @@
       100% { opacity: 0.9; transform: translateY(-25px) scale(1.3); }
     }
 
-    /* extra floating rohee-like shapes (soft circles) */
     .rohee-dot {
       position: absolute;
       background: rgba(255, 180, 210, 0.25);
@@ -259,6 +258,88 @@
       0% { transform: translate(0, 0); opacity: 0.2; }
       100% { transform: translate(-60px, -40px); opacity: 0.5; }
     }
+
+    /* ---------- BABY ROHEE IMAGES (floating) ---------- */
+    .baby-rohee {
+      position: absolute;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffe4f0, #ffb0d0);
+      box-shadow: 0 8px 28px rgba(255, 120, 180, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.5) inset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      z-index: 2;
+      animation: floatBaby 10s infinite alternate ease-in-out;
+      transition: transform 0.3s ease;
+      will-change: transform;
+      border: 2px solid rgba(255, 220, 240, 0.9);
+      pointer-events: none;
+      filter: drop-shadow(0 0 12px #ffb0d8);
+      overflow: hidden;
+    }
+
+    /* baby rohee inner cute face emoji */
+    .baby-rohee::after {
+      content: "🍼";
+      font-size: 2.2rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+    }
+
+    /* variations of baby rohee with different cuteness */
+    .baby-rohee.b1::after { content: "👶"; }
+    .baby-rohee.b2::after { content: "🍼"; }
+    .baby-rohee.b3::after { content: "🧸"; }
+    .baby-rohee.b4::after { content: "👶🏻"; }
+    .baby-rohee.b5::after { content: "🍼💕"; font-size: 1.8rem; }
+    .baby-rohee.b6::after { content: "🐣"; }
+    .baby-rohee.b7::after { content: "🌸"; }
+    .baby-rohee.b8::after { content: "🧸💗"; font-size: 1.8rem; }
+
+    /* baby rohee floating animation */
+    @keyframes floatBaby {
+      0% { transform: translate(0, 0) rotate(-2deg) scale(1); }
+      25% { transform: translate(18px, -22px) rotate(3deg) scale(1.05); }
+      50% { transform: translate(-12px, -40px) rotate(-4deg) scale(1.1); }
+      75% { transform: translate(25px, -15px) rotate(2deg) scale(1.02); }
+      100% { transform: translate(-8px, 18px) rotate(-1deg) scale(0.98); }
+    }
+
+    /* different float paths */
+    .baby-rohee.b1 { animation-duration: 11s; animation-delay: 0s; }
+    .baby-rohee.b2 { animation-duration: 14s; animation-delay: -3s; }
+    .baby-rohee.b3 { animation-duration: 12.5s; animation-delay: -6s; }
+    .baby-rohee.b4 { animation-duration: 16s; animation-delay: -1s; }
+    .baby-rohee.b5 { animation-duration: 13s; animation-delay: -8s; }
+    .baby-rohee.b6 { animation-duration: 15s; animation-delay: -4s; }
+    .baby-rohee.b7 { animation-duration: 10s; animation-delay: -7s; }
+    .baby-rohee.b8 { animation-duration: 17s; animation-delay: -2s; }
+
+    /* position each baby rohee around the screen */
+    .baby-rohee.b1 { top: 8%; left: 6%; }
+    .baby-rohee.b2 { top: 18%; right: 8%; left: auto; }
+    .baby-rohee.b3 { bottom: 12%; left: 12%; }
+    .baby-rohee.b4 { bottom: 22%; right: 10%; left: auto; }
+    .baby-rohee.b5 { top: 48%; left: 4%; }
+    .baby-rohee.b6 { top: 62%; right: 6%; left: auto; }
+    .baby-rohee.b7 { top: 75%; left: 22%; }
+    .baby-rohee.b8 { top: 32%; right: 18%; left: auto; }
+
+    /* extra tiny baby rohee floating in mid */
+    .baby-rohee.mini {
+      width: 52px;
+      height: 52px;
+      font-size: 1.6rem;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 8px #ffb0d8);
+    }
+    .baby-rohee.mini::after { font-size: 1.4rem; }
+    .baby-rohee.mini.m1 { top: 85%; left: 42%; animation-duration: 9s; }
+    .baby-rohee.mini.m2 { top: 12%; left: 48%; animation-duration: 11s; animation-delay: -2s; }
+    .baby-rohee.mini.m3 { top: 55%; right: 28%; left: auto; animation-duration: 13s; animation-delay: -5s; }
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 480px) {
@@ -279,6 +360,17 @@
         font-size: 1.2rem;
         padding: 0.9rem 2rem;
       }
+      .baby-rohee {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      .baby-rohee.mini {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      .baby-rohee.mini::after { font-size: 1rem; }
     }
 
     @media (max-width: 360px) {
@@ -288,9 +380,14 @@
       h1 {
         font-size: 1.9rem;
       }
+      .baby-rohee {
+        width: 48px;
+        height: 48px;
+        font-size: 1.6rem;
+      }
+      .baby-rohee::after { font-size: 1.4rem; }
     }
 
-    /* make sure content stays above bg */
     .content-wrapper {
       position: relative;
       z-index: 20;
@@ -298,13 +395,30 @@
       display: flex;
       justify-content: center;
     }
+
+    /* subtle glow behind baby rohee to make them pop */
+    .baby-rohee-glow {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,200,230,0.25) 0%, transparent 70%);
+      width: 120px;
+      height: 120px;
+      pointer-events: none;
+      z-index: 1;
+      animation: glowPulse 4s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% { opacity: 0.3; transform: scale(0.9); }
+      100% { opacity: 0.8; transform: scale(1.2); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ===== ROHee ANIMATION BACKGROUND ===== 
-       Soft floating orbs, sparkles and glowing dots 
-       Inspired by 'rohee' = gentle, dreamy, loving motion -->
+  <!-- ============================================= -->
+  <!-- ===== ROHee / BABY ROHEE ANIMATION BG ======= -->
+  <!-- ============================================= -->
   <div class="rohee-bg" aria-hidden="true">
     <!-- large soft orbs -->
     <div class="rohee r1"></div>
@@ -313,14 +427,14 @@
     <div class="rohee r4"></div>
     <div class="rohee r5"></div>
 
-    <!-- little floating dots (rohee dots) -->
+    <!-- floating dots -->
     <div class="rohee-dot" style="width: 18px; height: 18px; top: 20%; left: 15%; animation-duration: 14s;"></div>
     <div class="rohee-dot" style="width: 32px; height: 32px; top: 70%; left: 80%; animation-duration: 20s; animation-delay: -3s;"></div>
     <div class="rohee-dot" style="width: 24px; height: 24px; top: 50%; left: 45%; animation-duration: 16s; animation-delay: -7s;"></div>
     <div class="rohee-dot" style="width: 12px; height: 12px; top: 85%; left: 30%; animation-duration: 12s; animation-delay: -2s;"></div>
     <div class="rohee-dot" style="width: 40px; height: 40px; top: 10%; left: 70%; animation-duration: 22s; animation-delay: -5s; background: rgba(200, 140, 255, 0.2);"></div>
 
-    <!-- floating sparkles (rohee hearts) -->
+    <!-- floating sparkles -->
     <div class="sparkle" style="top: 12%; left: 18%; animation-duration: 5s; animation-delay: 0s;">❤️</div>
     <div class="sparkle" style="top: 78%; left: 88%; animation-duration: 7s; animation-delay: 1s; font-size: 2rem;">🌸</div>
     <div class="sparkle" style="top: 45%; left: 8%; animation-duration: 6s; animation-delay: 2s; font-size: 1.4rem;">✨</div>
@@ -328,6 +442,27 @@
     <div class="sparkle" style="top: 88%; left: 12%; animation-duration: 5.5s; animation-delay: 1.8s;">🌷</div>
     <div class="sparkle" style="top: 60%; left: 75%; animation-duration: 9s; animation-delay: 0.2s; font-size: 1.6rem;">✨</div>
     <div class="sparkle" style="top: 22%; left: 55%; animation-duration: 6.5s; animation-delay: 2.5s;">🌸</div>
+
+    <!-- ===== BABY ROHEE IMAGES ===== -->
+    <!-- Each is a cute floating "baby rohee" character with emoji face -->
+    <div class="baby-rohee b1" style="animation-duration: 12s;"></div>
+    <div class="baby-rohee b2" style="animation-duration: 15s;"></div>
+    <div class="baby-rohee b3" style="animation-duration: 13s;"></div>
+    <div class="baby-rohee b4" style="animation-duration: 17s;"></div>
+    <div class="baby-rohee b5" style="animation-duration: 14s;"></div>
+    <div class="baby-rohee b6" style="animation-duration: 16s;"></div>
+    <div class="baby-rohee b7" style="animation-duration: 11s;"></div>
+    <div class="baby-rohee b8" style="animation-duration: 18s;"></div>
+
+    <!-- extra mini baby rohees -->
+    <div class="baby-rohee mini m1" style="animation-duration: 10s;"></div>
+    <div class="baby-rohee mini m2" style="animation-duration: 12s;"></div>
+    <div class="baby-rohee mini m3" style="animation-duration: 14s;"></div>
+
+    <!-- soft glow behind some babies for extra cuteness (optional) -->
+    <div class="baby-rohee-glow" style="top: 8%; left: 6%;"></div>
+    <div class="baby-rohee-glow" style="top: 18%; right: 8%; left: auto;"></div>
+    <div class="baby-rohee-glow" style="bottom: 12%; left: 12%;"></div>
   </div>
 
   <!-- ===== MAIN APOLOGY CARD ===== -->
@@ -345,59 +480,75 @@
         <span class="signature">— with all my love</span>
       </div>
 
-      <!-- interactive button (just for UI warmth) -->
       <button class="forgive-btn" id="forgiveBtn">
         <span>💖</span> I forgive you <span>💖</span>
       </button>
     </div>
   </div>
 
-  <!-- small script for a friendly touch (optional) -->
+  <!-- interactive script -->
   <script>
     (function() {
       const btn = document.getElementById('forgiveBtn');
       if (btn) {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
-          // create a quick burst of floating hearts / rohee effect on click
+          
+          // Create floating baby rohee + hearts burst
+          const emojis = ['👶', '🍼', '🧸', '🌸', '💗', '❤️', '✨', '🐣'];
           const colors = ['#ff90b6', '#ffb86b', '#b86bff', '#6b9eff', '#ff6bcb'];
-          for (let i = 0; i < 18; i++) {
-            const heart = document.createElement('div');
-            heart.innerHTML = ['❤️', '🌸', '✨', '💗', '🤍'][Math.floor(Math.random() * 5)];
-            heart.style.position = 'fixed';
-            heart.style.left = (e.clientX || window.innerWidth / 2) + (Math.random() * 80 - 40) + 'px';
-            heart.style.top = (e.clientY || window.innerHeight / 2) + (Math.random() * 60 - 30) + 'px';
-            heart.style.fontSize = (Math.random() * 24 + 16) + 'px';
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '9999';
-            heart.style.opacity = '1';
-            heart.style.transition = 'transform 1.2s ease-out, opacity 1.2s ease-out';
-            heart.style.transform = 'translate(0, 0) scale(1)';
-            heart.style.filter = 'drop-shadow(0 0 12px rgba(255,150,200,0.8))';
-            document.body.appendChild(heart);
+          
+          for (let i = 0; i < 22; i++) {
+            const el = document.createElement('div');
+            const isBaby = Math.random() > 0.5;
+            
+            if (isBaby) {
+              // baby rohee burst
+              el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+              el.style.fontSize = (Math.random() * 28 + 22) + 'px';
+              el.style.filter = 'drop-shadow(0 0 12px #ffb0d8)';
+            } else {
+              el.innerHTML = ['❤️', '✨', '💗', '🌸'][Math.floor(Math.random() * 4)];
+              el.style.fontSize = (Math.random() * 20 + 16) + 'px';
+            }
+            
+            el.style.position = 'fixed';
+            el.style.left = (e.clientX || window.innerWidth / 2) + (Math.random() * 90 - 45) + 'px';
+            el.style.top = (e.clientY || window.innerHeight / 2) + (Math.random() * 70 - 35) + 'px';
+            el.style.pointerEvents = 'none';
+            el.style.zIndex = '9999';
+            el.style.opacity = '1';
+            el.style.transition = 'transform 1.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.4s ease-out';
+            el.style.transform = 'translate(0, 0) scale(1)';
+            el.style.willChange = 'transform, opacity';
+            
+            document.body.appendChild(el);
 
-            // animate
+            // Animate outward with float
             requestAnimationFrame(() => {
               const angle = Math.random() * Math.PI * 2;
-              const radius = 100 + Math.random() * 180;
+              const radius = 120 + Math.random() * 220;
               const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius - 60; // bias upward
-              heart.style.transform = `translate(${x}px, ${y}px) scale(0.4) rotate(${Math.random() * 40 - 20}deg)`;
-              heart.style.opacity = '0';
+              const y = Math.sin(angle) * radius - 70; // upward bias
+              el.style.transform = `translate(${x}px, ${y}px) scale(0.3) rotate(${Math.random() * 60 - 30}deg)`;
+              el.style.opacity = '0';
             });
 
-            // remove after animation
+            // Cleanup
             setTimeout(() => {
-              if (heart.parentNode) heart.remove();
-            }, 1400);
+              if (el.parentNode) el.remove();
+            }, 1500);
           }
 
-          // subtle button feedback
+          // Button feedback
           btn.style.transform = 'scale(0.96)';
           setTimeout(() => { btn.style.transform = ''; }, 150);
-          btn.innerHTML = '🌸 Thank you 🌸';
+          
+          // Change button text temporarily
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '🍼 Thank you 🍼';
           setTimeout(() => {
-            btn.innerHTML = '<span>💖</span> I forgive you <span>💖</span>';
+            btn.innerHTML = originalText;
           }, 2000);
         });
       }
