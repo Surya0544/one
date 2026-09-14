@@ -50,7 +50,7 @@
       gap: 1.5rem;
       position: sticky;
       top: 0;
-      background: rgba(249, 250, 252, 0.9);
+      background: rgba(249, 250, 252, 0.92);
       backdrop-filter: blur(12px);
       z-index: 40;
       padding: 0.5rem 0;
@@ -77,47 +77,19 @@
       font-size: 2rem;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      font-weight: 500;
-      color: #4a4a6a;
-      font-size: 1rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.2s;
-      cursor: pointer;
-    }
-
+    .nav-links { display: flex; gap: 2.5rem; font-weight: 500; color: #4a4a6a; font-size: 1rem; }
+    .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; cursor: pointer; }
     .nav-links a:hover { color: var(--brand); }
 
-    .header-actions {
-      display: flex;
-      gap: 1.8rem;
-      align-items: center;
-      color: #2b2b40;
-      font-size: 1.3rem;
-    }
-
-    .header-actions i {
-      cursor: pointer;
-      transition: color 0.2s, transform 0.15s;
-    }
-
+    .header-actions { display: flex; gap: 1.8rem; align-items: center; color: #2b2b40; font-size: 1.3rem; }
+    .header-actions i { cursor: pointer; transition: color 0.2s, transform 0.15s; }
     .header-actions i:hover { color: var(--brand); transform: translateY(-2px); }
 
-    .cart-badge {
-      position: relative;
-    }
-
+    .cart-badge { position: relative; }
     .cart-badge::after {
       content: attr(data-count);
       position: absolute;
-      top: -8px;
-      right: -10px;
+      top: -8px; right: -10px;
       background: var(--brand);
       color: white;
       font-size: 0.65rem;
@@ -133,17 +105,15 @@
       transition: transform 0.2s;
     }
 
-    .cart-badge.bump::after {
-      animation: bump 0.35s ease;
-    }
+    .cart-badge.bump::after { animation: bump 0.4s ease; }
 
     @keyframes bump {
       0% { transform: scale(1); }
-      50% { transform: scale(1.4); }
+      50% { transform: scale(1.5); }
       100% { transform: scale(1); }
     }
 
-    /* ---------- MAIN PRODUCT GRID ---------- */
+    /* ---------- MAIN PRODUCT ---------- */
     .product-main {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -165,16 +135,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
     }
 
-    .main-image img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-      transition: transform 0.4s ease;
-    }
-
+    .main-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .main-image:hover img { transform: scale(1.02); }
 
     .thumbnails { display: flex; gap: 1rem; justify-content: center; }
@@ -209,13 +173,7 @@
       text-transform: uppercase;
     }
 
-    .product-title {
-      font-size: 2.4rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: #12121c;
-    }
+    .product-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #12121c; }
 
     .rating { display: flex; align-items: center; gap: 0.75rem; color: #f5b342; font-size: 1rem; margin: 0.2rem 0; }
     .rating span { color: #6b6b85; font-weight: 400; margin-left: 0.4rem; font-size: 0.95rem; }
@@ -371,7 +329,6 @@
       transition: transform 0.25s, box-shadow 0.25s;
       border: 1px solid #f0f0f8;
       position: relative;
-      overflow: hidden;
     }
 
     .rec-card:hover { transform: translateY(-6px); box-shadow: 0 24px 32px -16px rgba(0, 0, 0, 0.12); }
@@ -839,4 +796,10 @@
     /* success screen */
     .success-screen {
       text-align: center;
-      padding: 1.5rem 0.5rem 0
+      padding: 1.5rem 0.5rem 0.5rem;
+    }
+
+    .success-icon {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: #e6f7ed;
