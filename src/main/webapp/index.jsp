@@ -2,372 +2,867 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Sorry • with Jinmiran Baby 🍼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUMINA | modern e‑commerce</title>
+  <!-- Google Font & simple icons via Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- RESET & BASE ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
     }
 
     body {
-      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: #f9fafc;
+      color: #1e1e2f;
+      line-height: 1.5;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0b0e14;
-      padding: 16px;
-      overflow-x: hidden;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* ---------- MAIN CARD ---------- */
-    .sorry-card {
-      position: relative;
-      z-index: 10;
+    /* main container */
+    .app-wrapper {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2rem 2rem 1rem;
+      flex: 1;
       width: 100%;
-      max-width: 600px;
-      background: rgba(20, 25, 35, 0.55);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border-radius: 48px;
-      padding: 2.8rem 2rem 2.8rem 2rem;
-      box-shadow: 0 30px 45px -20px rgba(0, 0, 0, 0.8), 
-                  0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-                  0 0 35px rgba(220, 120, 180, 0.3);
-      border: 1px solid rgba(255, 200, 230, 0.2);
-      text-align: center;
-      transition: transform 0.3s ease;
-      animation: cardAppear 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
     }
 
-    @keyframes cardAppear {
-      0% { opacity: 0; transform: scale(0.92) translateY(20px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
+    /* header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
 
-    /* ---------- HEART SYMBOL ---------- */
-    .apology-icon {
-      font-size: 4.2rem;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-      filter: drop-shadow(0 8px 18px rgba(255, 120, 180, 0.5));
-      animation: gentlePulse 2.8s infinite ease-in-out;
-    }
-
-    @keyframes gentlePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    /* ---------- TYPOGRAPHY ---------- */
-    h1 {
-      font-size: 2.8rem;
+    .logo {
+      font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffe6f0, #ffb6d9, #ff8ec4);
+      background: linear-gradient(135deg, #1e1e2f 0%, #3b3b5c 100%);
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(255, 140, 200, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .subhead {
-      font-size: 1.2rem;
-      color: #e0c0d0;
-      font-weight: 300;
-      letter-spacing: 0.3px;
-      margin-bottom: 2rem;
-      opacity: 0.9;
+    .logo i {
+      background: linear-gradient(145deg, #ff7b2c, #ff5e1a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
     }
 
-    .sorry-message {
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 32px;
-      padding: 1.8rem 1.4rem;
-      margin: 1.5rem 0 2rem 0;
-      border: 1px solid rgba(255, 180, 210, 0.25);
-      box-shadow: 0 0 25px rgba(200, 100, 160, 0.2) inset;
-    }
-
-    .sorry-message p {
-      font-size: 1.35rem;
-      line-height: 1.7;
-      color: #ffd9ec;
-      font-weight: 400;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-      word-break: break-word;
-    }
-
-    .sorry-message .signature {
-      display: block;
-      margin-top: 1rem;
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      font-weight: 500;
+      color: #4a4a6a;
       font-size: 1rem;
-      color: #c0a0b0;
-      font-style: italic;
-      letter-spacing: 0.5px;
     }
 
-    /* ---------- CUTE BUTTON ---------- */
-    .forgive-btn {
-      background: linear-gradient(145deg, #ff90b6, #ff5e9c);
-      border: none;
-      padding: 1rem 2.8rem;
-      border-radius: 100px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #1e1016;
-      letter-spacing: 0.5px;
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ff5e1a;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+      color: #2b2b40;
+      font-size: 1.3rem;
+    }
+
+    .header-actions i {
       cursor: pointer;
-      box-shadow: 0 16px 30px -8px rgba(255, 80, 150, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
-      transition: all 0.2s ease;
-      display: inline-flex;
+      transition: color 0.2s, transform 0.15s;
+    }
+
+    .header-actions i:hover {
+      color: #ff5e1a;
+      transform: translateY(-2px);
+    }
+
+    .cart-badge {
+      position: relative;
+    }
+
+    .cart-badge::after {
+      content: '3';
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #ff5e1a;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(4px);
-      margin-bottom: 0.5rem;
+      border: 2px solid white;
     }
 
-    .forgive-btn:hover {
-      transform: scale(1.02) translateY(-3px);
-      box-shadow: 0 22px 35px -6px #ff4090, 0 0 0 1px white inset;
-      background: linear-gradient(145deg, #ff9ec2, #ff6ba8);
+    /* main product grid */
+    .product-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 8px 20px -6px rgba(0, 0, 0, 0.02);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
     }
 
-    .forgive-btn:active {
-      transform: scale(0.98);
+    /* ---------- LEFT: GALLERY ---------- */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
-    /* ============================================= */
-    /* ===== ROHee BACKGROUND ====================== */
-    /* ============================================= */
-    .rohee-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .main-image {
+      background: #f2f5fc;
+      border-radius: 2rem;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+    }
+
+    .main-image img {
       width: 100%;
       height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      background: radial-gradient(circle at 30% 20%, #2e1a2b, #0d0b12 80%);
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    /* floating orbs */
-    .rohee {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(22px);
-      opacity: 0.6;
-      animation: floatRohee 14s infinite alternate ease-in-out;
-      mix-blend-mode: screen;
+    .main-image:hover img {
+      transform: scale(1.02);
     }
 
-    .r1 { width: 380px; height: 380px; background: #ff7eb3; top: -120px; left: -100px; animation-duration: 16s; opacity: 0.3; filter: blur(60px); }
-    .r2 { width: 520px; height: 520px; background: #b86bff; bottom: -180px; right: -120px; animation-duration: 22s; opacity: 0.25; filter: blur(70px); }
-    .r3 { width: 280px; height: 280px; background: #ffb86b; top: 40%; left: 70%; animation-duration: 18s; opacity: 0.3; filter: blur(50px); }
-    .r4 { width: 400px; height: 400px; background: #6b9eff; bottom: 10%; left: 5%; animation-duration: 20s; opacity: 0.25; filter: blur(65px); }
-    .r5 { width: 220px; height: 220px; background: #ff6bcb; top: 15%; right: 15%; animation-duration: 12s; opacity: 0.4; filter: blur(40px); }
-
-    .sparkle {
-      position: absolute;
-      color: rgba(255, 200, 230, 0.7);
-      font-size: 1.8rem;
-      user-select: none;
-      pointer-events: none;
-      animation: twinkleRohee 6s infinite alternate;
-      filter: drop-shadow(0 0 6px #ff90b0);
-      z-index: 1;
-    }
-
-    @keyframes floatRohee {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -30px) scale(1.1); }
-      100% { transform: translate(-30px, 40px) scale(0.95); }
-    }
-
-    @keyframes twinkleRohee {
-      0% { opacity: 0.2; transform: translateY(0) scale(0.8); }
-      100% { opacity: 0.9; transform: translateY(-25px) scale(1.3); }
-    }
-
-    .rohee-dot {
-      position: absolute;
-      background: rgba(255, 180, 210, 0.25);
-      border-radius: 50%;
-      filter: blur(5px);
-      animation: floatDot 18s infinite alternate;
-      z-index: 1;
-    }
-
-    @keyframes floatDot {
-      0% { transform: translate(0, 0); opacity: 0.2; }
-      100% { transform: translate(-60px, -40px); opacity: 0.5; }
-    }
-
-    /* ============================================= */
-    /* ===== JINMIRAN BABY IMAGES (SVG data URIs) == */
-    /* ============================================= */
-    .jinmiran-baby {
-      position: absolute;
-      z-index: 3;
-      pointer-events: none;
-      filter: drop-shadow(0 14px 28px rgba(255, 150, 200, 0.6));
-      animation: floatJinmiran 13s infinite alternate ease-in-out;
-      will-change: transform;
-    }
-
-    /* Size variants */
-    .jinmiran-baby.size-xs { width: 55px;  height: 55px; }
-    .jinmiran-baby.size-sm { width: 75px;  height: 75px; }
-    .jinmiran-baby.size-md { width: 100px; height: 100px; }
-    .jinmiran-baby.size-lg { width: 130px; height: 130px; }
-    .jinmiran-baby.size-xl { width: 165px; height: 165px; }
-
-    @keyframes floatJinmiran {
-      0%   { transform: translate(0, 0) rotate(-4deg) scale(1); }
-      20%  { transform: translate(22px, -30px) rotate(5deg) scale(1.06); }
-      45%  { transform: translate(-18px, -50px) rotate(-6deg) scale(1.12); }
-      70%  { transform: translate(30px, -22px) rotate(4deg) scale(1.03); }
-      100% { transform: translate(-12px, 22px) rotate(-3deg) scale(0.97); }
-    }
-
-    /* Individual placement + timing */
-    .jinmiran-baby.jb1  { top: 4%;   left: 3%;    animation-duration: 13s; animation-delay: 0s; }
-    .jinmiran-baby.jb2  { top: 10%;  right: 5%;   left: auto; animation-duration: 16s; animation-delay: -3s; }
-    .jinmiran-baby.jb3  { bottom: 7%; left: 6%;   animation-duration: 14s; animation-delay: -6s; }
-    .jinmiran-baby.jb4  { bottom: 14%; right: 8%; left: auto; animation-duration: 18s; animation-delay: -1s; }
-    .jinmiran-baby.jb5  { top: 40%;  left: 1%;    animation-duration: 15s; animation-delay: -8s; }
-    .jinmiran-baby.jb6  { top: 55%;  right: 2%;   left: auto; animation-duration: 12s; animation-delay: -4s; }
-    .jinmiran-baby.jb7  { top: 70%;  left: 18%;   animation-duration: 17s; animation-delay: -2s; }
-    .jinmiran-baby.jb8  { top: 26%;  right: 20%;  left: auto; animation-duration: 11s; animation-delay: -7s; }
-    .jinmiran-baby.jb9  { top: 86%;  left: 42%;   animation-duration: 14.5s; animation-delay: -5s; }
-    .jinmiran-baby.jb10 { top: 1%;   left: 40%;   animation-duration: 19s; animation-delay: -9s; }
-    .jinmiran-baby.jb11 { top: 48%;  left: 48%;   animation-duration: 13.5s; animation-delay: -3.5s; }
-    .jinmiran-baby.jb12 { top: 18%;  left: 24%;   animation-duration: 15.5s; animation-delay: -1.5s; }
-    .jinmiran-baby.jb13 { bottom: 26%; left: 30%; animation-duration: 16.5s; animation-delay: -10s; }
-    .jinmiran-baby.jb14 { top: 63%;  left: 62%;   animation-duration: 12.5s; animation-delay: -2.5s; }
-    .jinmiran-baby.jb15 { bottom: 4%; right: 30%; left: auto; animation-duration: 18.5s; animation-delay: -6.5s; }
-
-    /* Soft glow behind babies */
-    .baby-glow {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 200, 230, 0.4) 0%, rgba(255, 150, 200, 0.12) 45%, transparent 70%);
-      pointer-events: none;
-      z-index: 1;
-      animation: glowPulse 5s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      0%   { opacity: 0.3; transform: scale(0.85); }
-      100% { opacity: 0.9; transform: scale(1.2); }
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 480px) {
-      .sorry-card { padding: 2rem 1.2rem; border-radius: 36px; }
-      h1 { font-size: 2.2rem; }
-      .apology-icon { font-size: 3.2rem; }
-      .sorry-message p { font-size: 1.2rem; }
-      .forgive-btn { font-size: 1.2rem; padding: 0.9rem 2rem; }
-      .jinmiran-baby.size-xs { width: 38px;  height: 38px; }
-      .jinmiran-baby.size-sm { width: 52px;  height: 52px; }
-      .jinmiran-baby.size-md { width: 70px;  height: 70px; }
-      .jinmiran-baby.size-lg { width: 92px;  height: 92px; }
-      .jinmiran-baby.size-xl { width: 115px; height: 115px; }
-    }
-
-    @media (max-width: 360px) {
-      .sorry-message p { font-size: 1rem; }
-      h1 { font-size: 1.9rem; }
-      .jinmiran-baby.size-xs { width: 32px;  height: 32px; }
-      .jinmiran-baby.size-sm { width: 44px;  height: 44px; }
-      .jinmiran-baby.size-md { width: 58px;  height: 58px; }
-      .jinmiran-baby.size-lg { width: 76px;  height: 76px; }
-      .jinmiran-baby.size-xl { width: 95px;  height: 95px; }
-    }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 20;
-      width: 100%;
+    .thumbnails {
       display: flex;
+      gap: 1rem;
       justify-content: center;
+    }
+
+    .thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 1.2rem;
+      background: #f2f5fc;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.15s, transform 0.15s;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb.active {
+      border-color: #ff5e1a;
+      transform: scale(1.02);
+      box-shadow: 0 8px 14px -6px rgba(255, 94, 26, 0.25);
+    }
+
+    .thumb:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ---------- RIGHT: PRODUCT INFO ---------- */
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffece2;
+      color: #b23e0a;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 0.35rem 1rem;
+      border-radius: 30px;
+      width: fit-content;
+      text-transform: uppercase;
+    }
+
+    .product-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #12121c;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #f5b342;
+      font-size: 1rem;
+      margin: 0.2rem 0 0.2rem;
+    }
+
+    .rating span {
+      color: #6b6b85;
+      font-weight: 400;
+      margin-left: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .price-section {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    .current-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e1e2f;
+      letter-spacing: -0.02em;
+    }
+
+    .old-price {
+      font-size: 1.2rem;
+      color: #9a9ab0;
+      text-decoration: line-through;
+      font-weight: 400;
+    }
+
+    .discount {
+      background: #e6f7ed;
+      color: #0e7b4b;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .description {
+      color: #5a5a78;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0.5rem 0 0.5rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e9e9f0;
+      margin: 0.6rem 0 1rem;
+    }
+
+    /* color selector */
+    .selector-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #3d3d60;
+      margin-bottom: 0.7rem;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .color-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.15s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+
+    .color-dot.active {
+      border-color: #ff5e1a;
+      transform: scale(1.08);
+      box-shadow: 0 8px 16px -4px rgba(255, 94, 26, 0.3);
+    }
+
+    .color-dot:hover {
+      transform: scale(1.05);
+    }
+
+    /* size selector */
+    .size-options {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+    }
+
+    .size-btn {
+      background: white;
+      border: 1.5px solid #e2e2ec;
+      color: #2b2b40;
+      font-weight: 500;
+      font-size: 0.95rem;
+      width: 60px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .size-btn:hover {
+      border-color: #b0b0cc;
+      background: #f8f8fe;
+    }
+
+    .size-btn.active {
+      border-color: #ff5e1a;
+      background: #fff7f2;
+      color: #b23e0a;
+      font-weight: 600;
+      box-shadow: 0 6px 12px -6px rgba(255, 94, 26, 0.3);
+    }
+
+    /* quantity + CTA */
+    .action-row {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+      margin: 0.8rem 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #e2e2ec;
+      border-radius: 60px;
+      padding: 0.25rem;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .quantity-selector button {
+      background: transparent;
+      border: none;
+      width: 44px;
+      height: 44px;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #3d3d60;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-selector button:hover {
+      background: #f1f1f8;
+      color: #ff5e1a;
+    }
+
+    .quantity-selector span {
+      font-weight: 600;
+      width: 36px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .add-to-cart {
+      background: #1e1e2f;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 1rem 2.5rem;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 12px 20px -10px rgba(30, 30, 47, 0.3);
+      flex: 1;
+      justify-content: center;
+      letter-spacing: 0.01em;
+    }
+
+    .add-to-cart i {
+      font-size: 1.1rem;
+    }
+
+    .add-to-cart:hover {
+      background: #2d2d45;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 28px -12px rgba(30, 30, 47, 0.4);
+    }
+
+    .add-to-cart:active {
+      transform: translateY(0);
+    }
+
+    .wishlist-btn {
+      background: #ffffff;
+      border: 1.5px solid #e2e2ec;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #3d3d60;
+      cursor: pointer;
+      transition: all 0.15s;
+      box-shadow: 0 6px 12px -6px rgba(0,0,0,0.05);
+    }
+
+    .wishlist-btn:hover {
+      border-color: #ff5e1a;
+      color: #ff5e1a;
+      background: #fff7f2;
+      transform: scale(1.03);
+    }
+
+    /* delivery info */
+    .delivery-info {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #5a5a78;
+      flex-wrap: wrap;
+    }
+
+    .delivery-info i {
+      color: #ff5e1a;
+      margin-right: 0.5rem;
+      width: 18px;
+    }
+
+    /* ----- extra recommendations (UI friendly) ----- */
+    .recommendations {
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .rec-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #1e1e2f;
+    }
+
+    .rec-title i {
+      color: #ff5e1a;
+    }
+
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .rec-card {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.2rem 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: 1px solid #f0f0f8;
+    }
+
+    .rec-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 32px -16px rgba(0, 0, 0, 0.1);
+    }
+
+    .rec-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 1.5rem;
+      background: #f2f5fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #9a9ab0;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .rec-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rec-card h4 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      color: #1e1e2f;
+    }
+
+    .rec-price {
+      font-weight: 700;
+      color: #1e1e2f;
+      margin-top: 0.2rem;
+    }
+
+    /* footer */
+    .footer {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      color: #9a9ab0;
+      font-size: 0.9rem;
+      border-top: 1px solid #ececf4;
+      margin-top: 1rem;
+    }
+
+    /* responsive */
+    @media (max-width: 850px) {
+      .product-main {
+        grid-template-columns: 1fr;
+        padding: 1.8rem;
+        gap: 2rem;
+      }
+
+      .product-title {
+        font-size: 2rem;
+      }
+
+      .app-wrapper {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .header {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-main {
+        padding: 1.2rem;
+        border-radius: 1.8rem;
+      }
+
+      .action-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .wishlist-btn {
+        width: 100%;
+        border-radius: 60px;
+        height: 56px;
+      }
+
+      .thumbnails {
+        gap: 0.6rem;
+      }
+
+      .thumb {
+        width: 65px;
+        height: 65px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <i class="fas fa-circle"></i> LUMINA
+      </div>
+      <nav class="nav-links">
+        <a href="#">New</a>
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">Accessories</a>
+        <a href="#">Sale</a>
+      </nav>
+      <div class="header-actions">
+        <i class="fas fa-search"></i>
+        <i class="far fa-heart"></i>
+        <i class="fas fa-shopping-bag cart-badge"></i>
+      </div>
+    </header>
 
-  <!-- ============================================= -->
-  <!-- ===== ROHee / JINMIRAN BABY ANIMATION BG ==== -->
-  <!-- ============================================= -->
-  <div class="rohee-bg" aria-hidden="true">
-    <!-- large soft orbs -->
-    <div class="rohee r1"></div>
-    <div class="rohee r2"></div>
-    <div class="rohee r3"></div>
-    <div class="rohee r4"></div>
-    <div class="rohee r5"></div>
+    <!-- Main product section -->
+    <section class="product-main">
+      <!-- LEFT: Gallery -->
+      <div class="gallery">
+        <div class="main-image">
+          <img id="mainImage" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80&auto=format&fit=crop" alt="Product image">
+        </div>
+        <div class="thumbnails">
+          <div class="thumb active" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80&auto=format&fit=crop">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80&auto=format&fit=crop" alt="thumb1">
+          </div>
+          <div class="thumb" data-img="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800&q=80&auto=format&fit=crop">
+            <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=200&q=80&auto=format&fit=crop" alt="thumb2">
+          </div>
+          <div class="thumb" data-img="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&q=80&auto=format&fit=crop">
+            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=200&q=80&auto=format&fit=crop" alt="thumb3">
+          </div>
+          <div class="thumb" data-img="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&q=80&auto=format&fit=crop">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=200&q=80&auto=format&fit=crop" alt="thumb4">
+          </div>
+        </div>
+      </div>
 
-    <!-- floating dots -->
-    <div class="rohee-dot" style="width: 18px; height: 18px; top: 20%; left: 15%; animation-duration: 14s;"></div>
-    <div class="rohee-dot" style="width: 32px; height: 32px; top: 70%; left: 80%; animation-duration: 20s; animation-delay: -3s;"></div>
-    <div class="rohee-dot" style="width: 24px; height: 24px; top: 50%; left: 45%; animation-duration: 16s; animation-delay: -7s;"></div>
-    <div class="rohee-dot" style="width: 12px; height: 12px; top: 85%; left: 30%; animation-duration: 12s; animation-delay: -2s;"></div>
-    <div class="rohee-dot" style="width: 40px; height: 40px; top: 10%; left: 70%; animation-duration: 22s; animation-delay: -5s; background: rgba(200, 140, 255, 0.2);"></div>
+      <!-- RIGHT: Product info -->
+      <div class="product-info">
+        <span class="badge">Best seller</span>
+        <h1 class="product-title">AeroStride<br>Max 270</h1>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span>4.8 (2.3k reviews)</span>
+        </div>
+        <div class="price-section">
+          <span class="current-price">$149</span>
+          <span class="old-price">$219</span>
+          <span class="discount">-32%</span>
+        </div>
+        <p class="description">
+          Experience next‑gen comfort. Breathable knit upper, responsive cushioning, and a sleek silhouette designed for all‑day wear.
+        </p>
+        <div class="divider"></div>
 
-    <!-- sparkles -->
-    <div class="sparkle" style="top: 12%; left: 18%; animation-duration: 5s; animation-delay: 0s;">❤️</div>
-    <div class="sparkle" style="top: 78%; left: 88%; animation-duration: 7s; animation-delay: 1s; font-size: 2rem;">🌸</div>
-    <div class="sparkle" style="top: 45%; left: 8%; animation-duration: 6s; animation-delay: 2s; font-size: 1.4rem;">✨</div>
-    <div class="sparkle" style="top: 30%; left: 92%; animation-duration: 8s; animation-delay: 0.5s; font-size: 2.2rem;">💗</div>
-    <div class="sparkle" style="top: 88%; left: 12%; animation-duration: 5.5s; animation-delay: 1.8s;">🌷</div>
-    <div class="sparkle" style="top: 60%; left: 75%; animation-duration: 9s; animation-delay: 0.2s; font-size: 1.6rem;">✨</div>
-    <div class="sparkle" style="top: 22%; left: 55%; animation-duration: 6.5s; animation-delay: 2.5s;">🌸</div>
-    <div class="sparkle" style="top: 92%; left: 55%; animation-duration: 7.5s; animation-delay: 1.2s;">🍼</div>
+        <!-- Color selection -->
+        <div class="selector-label">Color</div>
+        <div class="color-options" id="colorOptions">
+          <div class="color-dot active" style="background: #1e1e2f;" data-color="black"></div>
+          <div class="color-dot" style="background: #d9d9e6;" data-color="white"></div>
+          <div class="color-dot" style="background: #b23e0a;" data-color="orange"></div>
+          <div class="color-dot" style="background: #2e5b3c;" data-color="green"></div>
+        </div>
 
-    <!-- ===================================================== -->
-    <!-- ===== JINMIRAN BABY IMAGES (SVG data URIs) =========== -->
-    <!-- These are cute Korean-style baby characters with soft   -->
-    <!-- pastel colors, blush cheeks, and adorable expressions.  -->
-    <!-- ===================================================== -->
+        <!-- Size selection -->
+        <div class="selector-label">Size</div>
+        <div class="size-options" id="sizeOptions">
+          <div class="size-btn">7</div>
+          <div class="size-btn">8</div>
+          <div class="size-btn active">9</div>
+          <div class="size-btn">10</div>
+          <div class="size-btn">11</div>
+          <div class="size-btn">12</div>
+        </div>
 
-    <!-- Jinmiran Baby 1 – Pink hanbok baby with flower -->
-    <img class="jinmiran-baby jb1 size-xl"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg1' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff5f9'/><stop offset='100%25' stop-color='%23ffb6d9'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg1)' stroke='%23ff8ec4' stroke-width='3'/><path d='M40 60 Q60 20 100 40 Q140 20 160 60' stroke='%23ff5e9c' stroke-width='4' fill='none'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M78 128 Q100 150 122 128' stroke='%23e75480' stroke-width='5' fill='none' stroke-linecap='round'/><circle cx='100' cy='132' r='6' fill='%23ff6bcb'/><path d='M150 45 Q160 35 170 45 Q180 55 170 65 Q160 55 150 45 Z' fill='%23ff6bcb'/><path d='M165 40 Q170 32 178 40 Q185 48 178 55 Q170 48 165 40 Z' fill='%23ff9ec2'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23c2185b' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+        <!-- Quantity + CTA -->
+        <div class="action-row">
+          <div class="quantity-selector">
+            <button id="decreaseQty"><i class="fas fa-minus"></i></button>
+            <span id="qtyValue">1</span>
+            <button id="increaseQty"><i class="fas fa-plus"></i></button>
+          </div>
+          <button class="add-to-cart" id="addToCartBtn">
+            <i class="fas fa-shopping-bag"></i> Add to cart
+          </button>
+          <button class="wishlist-btn" id="wishlistBtn">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
 
-    <!-- Jinmiran Baby 2 – Blue baby with bottle -->
-    <img class="jinmiran-baby jb2 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg2' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23eef6ff'/><stop offset='100%25' stop-color='%23a6c8ff'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg2)' stroke='%234a7cbf' stroke-width='3'/><path d='M45 55 Q65 25 100 42 Q135 25 155 55' stroke='%234a7cbf' stroke-width='4' fill='none'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M80 130 Q100 150 120 130' stroke='%234a7cbf' stroke-width='5' fill='none' stroke-linecap='round'/><rect x='140' y='140' width='20' height='28' rx='5' fill='white' stroke='%234a7cbf' stroke-width='2.5'/><rect x='145' y='135' width='10' height='7' rx='2' fill='%23ffd966'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%234a7cbf' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+        <!-- Delivery / perks -->
+        <div class="delivery-info">
+          <div><i class="fas fa-truck"></i> Free shipping</div>
+          <div><i class="fas fa-undo-alt"></i> 30‑day returns</div>
+          <div><i class="fas fa-shield-alt"></i> 2‑year warranty</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Jinmiran Baby 3 – Mint baby with sparkles -->
-    <img class="jinmiran-baby jb3 size-md"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg3' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23eafff7'/><stop offset='100%25' stop-color='%2399e6cc'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg3)' stroke='%2327ae60' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ffb6d9' opacity='0.75'/><path d='M78 130 Q100 152 122 130' stroke='%2327ae60' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M160 55 L165 68 L178 70 L168 80 L171 93 L160 86 L149 93 L152 80 L142 70 L155 68 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='1'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%2327ae60' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+    <!-- Recommendations (UI friendly) -->
+    <section class="recommendations">
+      <div class="rec-title">
+        <i class="fas fa-fire"></i> You may also like
+      </div>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <div class="rec-img">
+            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=300&q=80&auto=format&fit=crop" alt="sneaker">
+          </div>
+          <h4>UrbanFlex</h4>
+          <div class="rec-price">$129</div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-img">
+            <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=300&q=80&auto=format&fit=crop" alt="sneaker">
+          </div>
+          <h4>CloudRunner</h4>
+          <div class="rec-price">$159</div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-img">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=300&q=80&auto=format&fit=crop" alt="sneaker">
+          </div>
+          <h4>StreetPulse</h4>
+          <div class="rec-price">$139</div>
+        </div>
+        <div class="rec-card">
+          <div class="rec-img">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80&auto=format&fit=crop" alt="sneaker">
+          </div>
+          <h4>AeroLite</h4>
+          <div class="rec-price">$119</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Jinmiran Baby 4 – Peach baby with bow -->
-    <img class="jinmiran-baby jb4 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg4' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fffaf0'/><stop offset='100%25' stop-color='%23ffcc99'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg4)' stroke='%23e67e22' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 150 120 130' stroke='%23e67e22' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M70 40 Q60 25 75 25 Q90 25 80 40 Z' fill='%23ff4081'/><path d='M80 40 Q90 25 105 25 Q120 25 110 40 Z' fill='%23ff4081'/><circle cx='90' cy='35' r='6' fill='%23ff80ab'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23e67e22' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+    <footer class="footer">
+      <p>© 2025 LUMINA — designed for effortless shopping.</p>
+    </footer>
+  </div>
 
-    <!-- Jinmiran Baby 5 – Lavender baby with moon -->
-    <img class="jinmiran-baby jb5 size-md"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg5' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23f8f0ff'/><stop offset='100%25' stop-color='%23c9a6ff'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg5)' stroke='%236a1b9a' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 148 120 130' stroke='%236a1b9a' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M155 50 A14 14 0 1 1 155 78 A10 10 0 1 0 155 50 Z' fill='%23ffd966' stroke='%23e6a817' stroke-width='1.5'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%236a1b9a' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+  <script>
+    (function(){
+      // ----- GALLERY THUMBNAIL SWITCH -----
+      const mainImg = document.getElementById('mainImage');
+      const thumbs = document.querySelectorAll('.thumb');
 
-    <!-- Jinmiran Baby 6 – Yellow baby with bib -->
-    <img class="jinmiran-baby jb6 size-sm"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg6' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fffdf0'/><stop offset='100%25' stop-color='%23ffe680'/></radialGradient></defs><ellipse cx='100' cy='190' rx='70' ry='12' fill='%23000' opacity='0.15'/><circle cx='100' cy='100' r='90' fill='url(%23jg6)' stroke='%23d4a017' stroke-width='3'/><circle cx='65' cy='80' r='11' fill='%23222'/><circle cx='135' cy='80' r='11' fill='%23222'/><circle cx='68' cy='77' r='3.5' fill='white'/><circle cx='138' cy='77' r='3.5' fill='white'/><ellipse cx='55' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><ellipse cx='145' cy='105' rx='11' ry='8' fill='%23ff9ec2' opacity='0.75'/><path d='M80 130 Q100 148 120 130' stroke='%23d4a017' stroke-width='5' fill='none' stroke-linecap='round'/><path d='M75 145 Q100 165 125 145 L120 160 Q100 175 80 160 Z' fill='white' stroke='%23d4a017' stroke-width='2'/><text x='100' y='192' font-size='16' text-anchor='middle' fill='%23d4a017' font-family='sans-serif' font-weight='bold'>진미란</text></svg>" />
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          // update active class
+          thumbs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          // update main image
+          const newSrc = this.dataset.img;
+          if (newSrc) mainImg.src = newSrc;
+        });
+      });
 
-    <!-- Jinmiran Baby 7 – Pink baby with hair tuft -->
-    <img class="jinmiran-baby jb7 size-lg"
-      alt="Jinmiran Baby"
-      src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><radialGradient id='jg7' cx='35%25' cy='30%25'><stop offset='0%25' stop-color='%23fff0f7'/><stop offset='100%25' stop-color
+      // ----- COLOR SELECTION -----
+      const colorDots = document.querySelectorAll('.color-dot');
+      colorDots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          colorDots.forEach(d => d.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // ----- SIZE SELECTION -----
+      const sizeBtns = document.querySelectorAll('.size-btn');
+      sizeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          sizeBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // ----- QUANTITY -----
+      let qty = 1;
+      const qtySpan = document.getElementById('qtyValue');
+      const decreaseBtn = document.getElementById('decreaseQty');
+      const increaseBtn = document.getElementById('increaseQty');
+
+      decreaseBtn.addEventListener('click', function() {
+        if (qty > 1) {
+          qty--;
+          qtySpan.textContent = qty;
+        }
+      });
+
+      increaseBtn.addEventListener('click', function() {
+        qty++;
+        qtySpan.textContent = qty;
+      });
+
+      // ----- ADD TO CART (UI feedback) -----
+      const addBtn = document.getElementById('addToCartBtn');
+      addBtn.addEventListener('click', function() {
+        const originalText = addBtn.innerHTML;
+        addBtn.innerHTML = '<i class="fas fa-check"></i> Added!';
+        addBtn.style.background = '#0e7b4b';
+        setTimeout(() => {
+          addBtn.innerHTML = originalText;
+          addBtn.style.background = '#1e1e2f';
+        }, 1500);
+        // optional: you could also update cart badge
+      });
+
+      // ----- WISHLIST toggle (UI feedback) -----
+      const wishBtn = document.getElementById('wishlistBtn');
+      const wishIcon = wishBtn.querySelector('i');
+      let wishlisted = false;
+      wishBtn.addEventListener('click', function() {
+        wishlisted = !wishlisted;
+        if (wishlisted) {
+          wishIcon.classList.remove('far');
+          wishIcon.classList.add('fas');
+          wishIcon.style.color = '#ff5e1a';
+        } else {
+          wishIcon.classList.remove('fas');
+          wishIcon.classList.add('far');
+          wishIcon.style.color = '#3d3d60';
+        }
+      });
+
+      // (optional) set initial qty display
+      qtySpan.textContent = qty;
+    })();
+  </script>
+</body>
+</html>
