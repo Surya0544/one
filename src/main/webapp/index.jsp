@@ -42,6 +42,8 @@
             line-height: 1.6;
             padding: 1.8rem 1.5rem;
             -webkit-font-smoothing: antialiased;
+            position: relative;
+            min-height: 100vh;
         }
 
         /* App shell */
@@ -54,6 +56,8 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.6);
             transition: box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
@@ -361,7 +365,7 @@
         /* Menu grid */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             padding: 1.5rem 3rem 3.5rem 3rem;
         }
@@ -599,10 +603,334 @@
             box-shadow: 0 10px 16px -6px rgba(224, 122, 58, 0.25);
         }
 
+        /* ---------- CHATBOT ---------- */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 68px;
+            height: 68px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 12px 28px -8px rgba(224, 122, 58, 0.7);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            z-index: 1000;
+            border: 3px solid white;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.08) rotate(6deg);
+            background: var(--primary-dark);
+            box-shadow: 0 18px 32px -8px rgba(224, 122, 58, 0.9);
+        }
+
+        .chatbot-toggle .badge-dot {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            width: 14px;
+            height: 14px;
+            background: #2ecc71;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2.5rem;
+            width: 380px;
+            max-width: calc(100vw - 2rem);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1001;
+            transition: all 0.35s cubic-bezier(0.2, 0, 0, 1);
+            opacity: 0;
+            transform: translateY(20px) scale(0.96);
+            pointer-events: none;
+            transform-origin: bottom right;
+        }
+
+        .chatbot-container.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #2b2b2b 0%, #1f1f1f 100%);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .chatbot-header .avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-header-info h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 1px;
+        }
+
+        .chatbot-header-info p {
+            font-size: 0.8rem;
+            color: #b0a69c;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chatbot-header-info p i {
+            color: #2ecc71;
+            font-size: 0.6rem;
+        }
+
+        .chatbot-close {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            color: #b0a69c;
+            font-size: 1.3rem;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .chatbot-body {
+            padding: 1.5rem;
+            height: 380px;
+            overflow-y: auto;
+            background: #faf8f6;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .chatbot-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chatbot-body::-webkit-scrollbar-thumb {
+            background: #d9d0c7;
+            border-radius: 10px;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-end;
+            max-width: 88%;
+            animation: fadeInMsg 0.3s ease;
+        }
+
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message .msg-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .message.bot .msg-avatar {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .message.user .msg-avatar {
+            background: #2b2b2b;
+            color: white;
+        }
+
+        .message .bubble {
+            padding: 0.8rem 1.1rem;
+            border-radius: 18px;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .message.bot .bubble {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-bottom-left-radius: 4px;
+            color: #3f3a34;
+        }
+
+        .message.user .bubble {
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px -4px rgba(224, 122, 58, 0.4);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            padding: 0 1.5rem 0.8rem 1.5rem;
+            background: #faf8f6;
+        }
+
+        .quick-reply {
+            background: white;
+            border: 1.5px solid #e5dbd2;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #5b554e;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .quick-reply:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .chatbot-input-area {
+            padding: 1rem 1.2rem;
+            background: white;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .chatbot-input-area input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border: 1.5px solid #e5dbd2;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border 0.2s;
+            background: #faf8f6;
+        }
+
+        .chatbot-input-area input:focus {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .chatbot-input-area button {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px -4px rgba(224, 122, 58, 0.5);
+        }
+
+        .chatbot-input-area button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.06);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 0.8rem 1.1rem;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #c9bfb5;
+            border-radius: 50%;
+            animation: typingBounce 1.2s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.15s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
         /* Focus & accessibility */
         button:focus-visible,
         input:focus-visible,
-        a:focus-visible {
+        a:focus-visible,
+        .quick-reply:focus-visible {
             outline: 3px solid rgba(224, 122, 58, 0.4);
             outline-offset: 3px;
         }
@@ -625,6 +953,8 @@
             .menu-grid { padding: 1.5rem 1.8rem 2.5rem; gap: 1.5rem; }
             .reservation-card { margin: 0 1.8rem 2.5rem; padding: 2.2rem 2rem; }
             .footer { padding: 1.8rem; flex-direction: column; gap: 1.2rem; text-align: center; }
+            .chatbot-container { right: 1rem; bottom: 5.5rem; width: 350px; }
+            .chatbot-toggle { bottom: 1.5rem; right: 1.5rem; width: 60px; height: 60px; font-size: 1.5rem; }
         }
 
         @media (max-width: 500px) {
@@ -637,6 +967,9 @@
             .reservation-form input { min-width: 100%; }
             .section-title { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
             .section-title h3 { font-size: 2rem; }
+            .chatbot-container { width: calc(100vw - 1.5rem); right: 0.75rem; bottom: 5rem; }
+            .chatbot-toggle { bottom: 1rem; right: 1rem; }
+            .menu-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -660,9 +993,9 @@
         <!-- Hero -->
         <section class="hero">
             <div class="hero-text">
-                <div class="badge"><i class="fas fa-star" style="margin-right: 6px; color: #e07a3a;"></i> Authentic Italian</div>
+                <div class="badge"><i class="fas fa-star" style="margin-right: 6px; color: #e07a3a;"></i> Italian & Indian Fusion</div>
                 <h2>Where every meal feels like <i>home</i></h2>
-                <p>Handcrafted pasta, wood-fired pizza, and fresh seasonal ingredients — delivered to your door or ready for pickup.</p>
+                <p>Handcrafted pasta, wood-fired pizza, fragrant curries, and fresh seasonal ingredients — delivered to your door or ready for pickup.</p>
                 <div class="hero-actions">
                     <button class="btn-primary"><i class="fas fa-bag-shopping"></i> Order now</button>
                     <button class="btn-secondary"><i class="fas fa-calendar-check"></i> Book a table</button>
@@ -680,127 +1013,4 @@
                 <div class="feature-text">
                     <h4>Fast delivery</h4>
                     <p>Within 30 min</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-seedling"></i></div>
-                <div class="feature-text">
-                    <h4>Fresh ingredients</h4>
-                    <p>Organic & local</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-mobile-screen"></i></div>
-                <div class="feature-text">
-                    <h4>Easy app</h4>
-                    <p>Order in seconds</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
-                <div class="feature-text">
-                    <h4>Secure payment</h4>
-                    <p>Multiple options</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Menu -->
-        <div class="section-title">
-            <h3>Chef's favorites</h3>
-            <a href="#">See full menu <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="menu-grid">
-            <div class="menu-card">
-                <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&auto=format&fit=crop&q=80');">
-                    <span class="price-tag">$14.90</span>
-                </div>
-                <div class="menu-info">
-                    <h4>Truffle Tagliatelle</h4>
-                    <p>Egg pasta, black truffle, parmesan cream.</p>
-                    <div class="menu-footer">
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span>4.8</span>
-                        </div>
-                        <button class="add-btn" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&auto=format&fit=crop&q=80');">
-                    <span class="price-tag">$16.50</span>
-                </div>
-                <div class="menu-info">
-                    <h4>Margherita Pizza</h4>
-                    <p>San Marzano tomato, fior di latte, basil.</p>
-                    <div class="menu-footer">
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                        <button class="add-btn" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&auto=format&fit=crop&q=80');">
-                    <span class="price-tag">$11.20</span>
-                </div>
-                <div class="menu-info">
-                    <h4>Garlic Focaccia</h4>
-                    <p>Rosemary, sea salt, extra virgin olive oil.</p>
-                    <div class="menu-footer">
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                        <button class="add-btn" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-card">
-                <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&auto=format&fit=crop&q=80');">
-                    <span class="price-tag">$8.90</span>
-                </div>
-                <div class="menu-info">
-                    <h4>Tiramisu</h4>
-                    <p>Mascarpone, espresso, cocoa, ladyfingers.</p>
-                    <div class="menu-footer">
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>4.9</span>
-                        </div>
-                        <button class="add-btn" aria-label="Add to order"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Reservation -->
-        <div class="reservation-card">
-            <div class="reservation-text">
-                <h3>Reserve your table</h3>
-                <p>Skip the wait — book in advance for lunch or dinner.</p>
-            </div>
-            <div class="reservation-form">
-                <input type="text" placeholder="Your name" aria-label="Your name">
-                <input type="date" placeholder="Date" aria-label="Reservation date">
-                <button>Book now</button>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div>© 2025 Bella Cucina · All rights reserved.</div>
-            <div class="social">
-                <i class="fab fa-instagram" role="button" aria-label="Instagram"></i>
-                <i class="fab fa-facebook-f" role="button" aria-label="Facebook"></i>
-                <i class="fab fa-x-twitter" role="button" aria-label="X"></i>
-                <i class="fab fa-tiktok" role="button" aria-label="TikTok"></i>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+                </
